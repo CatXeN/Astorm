@@ -7,7 +7,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace AstormChatAPI.SocketsManager
+namespace AstormChatServer.SocketsManager
 {
     public static class SocketsExtension
     {
@@ -26,7 +26,7 @@ namespace AstormChatAPI.SocketsManager
 
         public static IApplicationBuilder MapSockets(this IApplicationBuilder app, PathString path, SocketHandler socket)
         {
-            return app.Map(path, (x) => x.UseMiddleware<SocketMiddelware>)
+            return app.Map(path, (x) => x.UseMiddleware<SocketMiddelware>(socket));
         }
     }
 }

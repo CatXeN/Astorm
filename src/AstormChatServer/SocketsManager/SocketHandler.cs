@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AstormChatAPI.SocketsManager
+namespace AstormChatServer.SocketsManager
 {
     public abstract class SocketHandler
     {
@@ -29,7 +29,7 @@ namespace AstormChatAPI.SocketsManager
 
         public async Task SendMessage(WebSocket socket, string message)
         {
-            if (socket.State == WebSocketState.Open)
+            if (socket.State != WebSocketState.Open)
                 return;
 
             await socket.SendAsync(

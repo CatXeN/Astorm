@@ -6,7 +6,7 @@ using System.Net.WebSockets;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace AstormChatAPI.SocketsManager
+namespace AstormChatServer.SocketsManager
 {
     public class ConnectionManager
     {

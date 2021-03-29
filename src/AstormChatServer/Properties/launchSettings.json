@@ -17,7 +17,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "AstormChatAPI": {
+    "AstormChatServer": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,
