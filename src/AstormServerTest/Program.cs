@@ -23,7 +23,7 @@ namespace AstormServerTest
         public static async Task StartWebSockets()
         {
             var client = new ClientWebSocket();
-            await client.ConnectAsync(new Uri("ws://109.173.204.80:5000/ws"), CancellationToken.None);
+            await client.ConnectAsync(new Uri("ws://localhost:5000/ws"), CancellationToken.None);
             Console.WriteLine($"web socket established @ {DateTime.Now:F}");
 
             var send = Task.Run(async () =>
