@@ -10,10 +10,7 @@ namespace AstormChatServer.Handlers
 {
     public class WebSocketMessageHandler : SocketHandler
     {
-        public WebSocketMessageHandler(ConnectionManager connections) : base (connections)
-        {
-
-        }
+        public WebSocketMessageHandler(ConnectionManager connections) : base (connections) {}
 
         public override async Task OnConnected(WebSocket socket)
         {

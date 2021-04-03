@@ -24,9 +24,7 @@ namespace AstormChatServer.SocketsManager
             return services;
         }
 
-        public static IApplicationBuilder MapSockets(this IApplicationBuilder app, PathString path, SocketHandler socket)
-        {
-            return app.Map(path, (x) => x.UseMiddleware<SocketMiddelware>(socket));
-        }
+        public static IApplicationBuilder MapSockets(this IApplicationBuilder app, PathString path, SocketHandler socket) 
+            => app.Map(path, (x) => x.UseMiddleware<SocketMiddelware>(socket));
     }
 }

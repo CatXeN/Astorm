@@ -22,10 +22,7 @@ namespace AstormChatServer.SocketsManager
             await Task.Run(() => { Connections.AddSocket(socket); });
         }
 
-        public virtual async Task OnDisconnected(WebSocket socket)
-        {
-            await Connections.RemoveSocketAsync(Connections.GetId(socket));
-        }
+        public virtual async Task OnDisconnected(WebSocket socket) => await Connections.RemoveSocketAsync(Connections.GetId(socket));
 
         public async Task SendMessage(WebSocket socket, string message)
         {
@@ -37,10 +34,7 @@ namespace AstormChatServer.SocketsManager
                 WebSocketMessageType.Text, true, CancellationToken.None);
         }
 
-        public async Task SendMessage(string id, string Message)
-        {
-            await SendMessage(Connections.GetSocketById(id), Message);
-        }
+        public async Task SendMessage(string id, string Message) => await SendMessage(Connections.GetSocketById(id), Message);
 
         public async Task SendMessageToAll(string message)
         {

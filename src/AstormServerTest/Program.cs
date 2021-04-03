@@ -10,15 +10,7 @@ namespace AstormServerTest
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            //if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Count() <= 2)
-            //{
-            //    Process.Start("AstormServerTest.exe");
-            //}
-
-            StartWebSockets().GetAwaiter().GetResult();
-        }
+        static void Main(string[] args) => StartWebSockets().GetAwaiter().GetResult();
 
         public static async Task StartWebSockets()
         {
