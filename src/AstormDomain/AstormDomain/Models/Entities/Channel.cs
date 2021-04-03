@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AstormDomain.Models.Entities
 {
-    public class Canal
+    public class Channel
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [ForeignKey("Channel")]
         public Guid Id { get; set; }
-        
         public string Name { get; set; }
     }
 }

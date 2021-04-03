@@ -1,5 +1,5 @@
 ﻿using AstormDomain.Models.Entities;
-using AstormDomain.Models.Informations;
+using AstormDomain.Models.Information;
 using AutoMapper;
 
 namespace AstormDomain.MappingProfile
@@ -8,9 +8,8 @@ namespace AstormDomain.MappingProfile
     {
         public AutoMapperProfile()
         {
-            CreateMap<Canal, CanalInformation>().ReverseMap();
-            CreateMap<CanalMessage, CanalMessageInformation>().ReverseMap();
-            CreateMap<Message, MessageInformation>().ReverseMap();
+            CreateMap<Channel, ChannelInformation>().ReverseMap();
+            CreateMap<ChannelMessage, ChannelMessageInformation>().ReverseMap();
             CreateMap<Server, ServerInformation>().ReverseMap();
             CreateMap<User, UserInformation>().ReverseMap();
             CreateMap<UserMessage, UserMessageInformation>();

@@ -4,16 +4,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AstormDomain.Models.Entities
 {
-    public class Server
+    public class Message
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
+        public string Content { get; set; }
+        public DateTime SendMessageDate { get; set; }
+        public Guid UserId { get; set; }
         
-        public string Name { get; set; }
-        
-        public string Photo { get; set; }
-        
-        public string Description { get; set; }
+        public virtual User User{ get; set; }
     }
 }
