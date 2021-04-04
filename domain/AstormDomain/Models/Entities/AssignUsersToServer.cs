@@ -7,6 +7,7 @@ namespace AstormDomain.Models.Entities
     public class AssignUsersToServer
     {
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public Guid ServerId { get; set; }

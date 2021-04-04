@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using AstormDomain.Models.Entities;
 
 namespace AstormDomain.Models.Information
 {
@@ -12,5 +15,9 @@ namespace AstormDomain.Models.Information
         public string Phone { get; set; }
         public string Photo { get; set; }
         public string Description { get; set; }
+        
+        public IEnumerable<UserMessage> OwnerMessages { get; }
+        public IEnumerable<UserMessage> RecipientMessages { get; }
+        public IEnumerable<ChannelMessage> UserMessages { get; }
     }
 }
