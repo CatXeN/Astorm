@@ -10,7 +10,7 @@ namespace AstormChatServer.SocketsManager
 {
     public class ConnectionManager
     {
-        private ConcurrentDictionary<string, WebSocket> _connections = new();
+        private ConcurrentDictionary<string, WebSocket> _connections = new ConcurrentDictionary<string, WebSocket>();
 
         public WebSocket GetSocketById(string id) => _connections.FirstOrDefault(x => x.Key == id).Value;
 
