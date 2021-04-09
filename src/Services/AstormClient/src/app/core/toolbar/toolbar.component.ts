@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-toolbar',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class ToolbarComponent {
 
+  constructor(private translate: TranslateService) {
+    translate.setDefaultLang('en');
+  }
+  
+  switchLanguage(language: string): void {
+    this.translate.use(language);
+  }
 }

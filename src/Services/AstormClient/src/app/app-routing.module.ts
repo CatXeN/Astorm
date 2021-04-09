@@ -6,10 +6,12 @@ const routes: Routes = [
   {
     path: '',
     component: MainLayoutComponent,
-    // children: [
-    //   {
-    //   }
-    // ]
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./modules/chat/chat.module').then(x => x.ChatModule)
+      }
+    ]
   }
 ];
 
