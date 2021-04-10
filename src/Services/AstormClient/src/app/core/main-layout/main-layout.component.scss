@@ -1,3 +1,8 @@
 .display-wrapper {
     display: flex;
+    height: 94%;
+
+    app-chat-container {
+        widows: 30%;
+    }
 }
