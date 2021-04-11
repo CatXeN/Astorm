@@ -1,4 +1,12 @@
 <div class="container">
+  <div class="language-menu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>language</mat-icon>
+    </button>    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="switchLanguage('pl')">PL</button>
+      <button mat-menu-item (click)="switchLanguage('en')">EN</button>
+    </mat-menu>
+  </div>
   <div class="user">
     <img class="user__profile"
       src="https://media1.s-nbcnews.com/i/newscms/2015_02/835681/150106-mia-khalifa-830a_bcc977bc287eeeb9c3148b332b0e1a7b.jpg">
