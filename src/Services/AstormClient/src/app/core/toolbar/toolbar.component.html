@@ -1,7 +1,8 @@
 <div class="container">
   <div class="language-menu">
-    <button mat-button [matMenuTriggerFor]="menu">{{"language" | translate}}</button>
-    <mat-menu #menu="matMenu">
+    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu">
+      <mat-icon>language</mat-icon>
+    </button>    <mat-menu #menu="matMenu">
       <button mat-menu-item (click)="switchLanguage('pl')">PL</button>
       <button mat-menu-item (click)="switchLanguage('en')">EN</button>
     </mat-menu>

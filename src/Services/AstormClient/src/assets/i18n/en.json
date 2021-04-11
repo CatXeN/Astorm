@@ -1,4 +1,5 @@
 {
     "chat": "chat",
-    "language": "language"
+    "language": "language",
+    "putText": "Text something..."
 }
