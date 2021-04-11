@@ -16,6 +16,10 @@ export const routes: Routes = [
       {
         path: 'register',
         component: RegisterPresenterComponent
+      },
+      {
+        path: '**',
+        redirectTo: 'login'
       }
     ]
   }
