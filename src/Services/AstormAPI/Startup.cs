@@ -1,11 +1,13 @@
 using AstormAPI.Extensions;
 using AstormApplication;
 using AstormPresistance;
+using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using System.Reflection;
 
 namespace AstormAPI
 {
@@ -25,6 +27,8 @@ namespace AstormAPI
             services.AddSwaggerExtension();
             services.AddApplicationLayer();
             services.AddPersistenceInfrastructure(Configuration);
+
+            services.AddAuthenticationLibrary(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
