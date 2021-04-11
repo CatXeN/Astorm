@@ -1,0 +1,10 @@
+<button mat-icon-button [matMenuTriggerFor]="menu" class="language-menu">
+  <mat-icon>language</mat-icon>
+</button>    <mat-menu #menu="matMenu">
+  <button mat-menu-item (click)="switchLanguage('pl')">PL</button>
+  <button mat-menu-item (click)="switchLanguage('en')">EN</button>
+</mat-menu>
+<div class="container">
+  <router-outlet>
+  </router-outlet>
+</div>
