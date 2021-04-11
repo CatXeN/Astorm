@@ -12,9 +12,9 @@ namespace AstormChatServer.Handlers
     {
         public WebSocketMessageHandler(ConnectionManager connections) : base (connections) {}
 
-        public override async Task OnConnected(WebSocket socket)
+        public override async Task OnConnected(WebSocket socket, string token)
         {
-            await base.OnConnected(socket);
+            await base.OnConnected(socket, token);
 
             var socketId = Connections.GetId(socket);
             await SendMessageToAll($"{socketId} just joined :)");

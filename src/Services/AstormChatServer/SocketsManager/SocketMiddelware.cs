@@ -24,8 +24,9 @@ namespace AstormChatServer.SocketsManager
             if (!context.WebSockets.IsWebSocketRequest)
                 return;
 
+            var token = context.Request.Cookies["token"];
             var socket = await context.WebSockets.AcceptWebSocketAsync();
-            await Handler.OnConnected(socket);
+            await Handler.OnConnected(socket, token);
             await Receive(socket, async (result, buffer) =>
             {
                 if(result.MessageType == WebSocketMessageType.Text)
