@@ -34,7 +34,7 @@ namespace AstormChatServer.SocketsManager
             var Id = tokenDecoded.Claims.FirstOrDefault(x => x.Type == "nameid").Value;
             var Name = tokenDecoded.Claims.FirstOrDefault(x => x.Type == "unique_name").Value;
             
-            _connections.TryAdd(Name, socket);
+            _connections.TryAdd(Id, socket);
         }
     }
 }
