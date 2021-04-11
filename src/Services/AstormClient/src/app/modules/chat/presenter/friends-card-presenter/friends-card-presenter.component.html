@@ -1,8 +1,20 @@
 <div class="container">
     <div class="header">
-        <p>{{'chat' | translate}}</p>
-        <button mat-icon-button aria-label="Example icon button with a vertical three dot icon">
-            <mat-icon>more_vert</mat-icon>
+        <span class="header__chat-text">{{'chat' | translate}}</span>
+        <button mat-icon-button color="primary" class="header__add-btn">
+            <mat-icon>add</mat-icon>
           </button>
+    </div>
+    <div class="friend-container">
+        <div class="friend">
+            <img 
+            src="https://newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg"
+            class="friend__image">
+            <div class="friend__overall">
+                <p class="friend__overall--name">Name</p>
+                <p class="friend__overall--message">Last message</p>
+            </div>
+        </div>
+    
     </div>
 </div>
