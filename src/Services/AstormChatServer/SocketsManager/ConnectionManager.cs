@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Threading;
@@ -24,8 +25,16 @@ namespace AstormChatServer.SocketsManager
             await socket.CloseAsync(WebSocketCloseStatus.NormalClosure, "socket connection closed", CancellationToken.None);
         }
 
-        public void AddSocket(WebSocket socket) => _connections.TryAdd(GetConnectionId(), socket);
+        public void AddSocket(WebSocket socket, string token)
+        {
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(token);
+            var tokenDecoded = jsonToken as JwtSecurityToken;
 
-        private string GetConnectionId() => Guid.NewGuid().ToString("N");
+            var Id = tokenDecoded.Claims.FirstOrDefault(x => x.Type == "nameid").Value;
+            var Name = tokenDecoded.Claims.FirstOrDefault(x => x.Type == "unique_name").Value;
+            
+            _connections.TryAdd(Id, socket);
+        }
     }
 }

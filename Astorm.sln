@@ -13,21 +13,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{FE
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{C2D6FF51-B325-437E-BED1-089AD92FDC09}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstormPresistance", "src\Infrastructure\AstormPresistance\AstormPresistance.csproj", "{E37F695D-AA38-4239-8E65-5FF8AE45D71B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstormPresistance", "src\Infrastructure\AstormPresistance\AstormPresistance.csproj", "{E37F695D-AA38-4239-8E65-5FF8AE45D71B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstormApplication", "src\Core\AstormApplication\AstormApplication.csproj", "{D1E3E629-9AA5-48B1-A119-775F19E5EC78}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstormApplication", "src\Core\AstormApplication\AstormApplication.csproj", "{D1E3E629-9AA5-48B1-A119-775F19E5EC78}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstormDomain", "src\Core\AstormDomain\AstormDomain.csproj", "{4AAA1635-9509-4AB2-A481-E000499ED15D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstormDomain", "src\Core\AstormDomain\AstormDomain.csproj", "{4AAA1635-9509-4AB2-A481-E000499ED15D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstormAPI", "src\Services\AstormAPI\AstormAPI.csproj", "{BE09B4BA-B4D8-4906-A019-A38D2B50771D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstormAPI", "src\Services\AstormAPI\AstormAPI.csproj", "{BE09B4BA-B4D8-4906-A019-A38D2B50771D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstormChatServer", "src\Services\AstormChatServer\AstormChatServer.csproj", "{595614CD-7E0C-44C3-9BEE-27A45E06A6B9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstormChatServer", "src\Services\AstormChatServer\AstormChatServer.csproj", "{595614CD-7E0C-44C3-9BEE-27A45E06A6B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstormServerTest", "src\Tests\AstormServerTest\AstormServerTest.csproj", "{A732729E-916C-4EF0-ADDD-AD62F11D5253}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstormServerTest", "src\Tests\AstormServerTest\AstormServerTest.csproj", "{A732729E-916C-4EF0-ADDD-AD62F11D5253}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstormAPITests", "src\Tests\AstormAPITests\AstormAPITests.csproj", "{4DCF0B09-6A40-40C9-9BEF-FB77B60E3F93}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstormAPITests", "src\Tests\AstormAPITests\AstormAPITests.csproj", "{4DCF0B09-6A40-40C9-9BEF-FB77B60E3F93}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AstormServerTests", "src\Tests\AstormServerTests\AstormServerTests.csproj", "{5BB4E6B3-2EA7-45FB-B3E7-D7DFD611666E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AstormServerTests", "src\Tests\AstormServerTests\AstormServerTests.csproj", "{5BB4E6B3-2EA7-45FB-B3E7-D7DFD611666E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure.Identity", "src\Infrastructure\Infrastructure.Identity\Infrastructure.Identity.csproj", "{8ADCFBCB-3CD1-40C4-B2A5-28C51832D859}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,13 +69,17 @@ Global
 		{5BB4E6B3-2EA7-45FB-B3E7-D7DFD611666E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BB4E6B3-2EA7-45FB-B3E7-D7DFD611666E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BB4E6B3-2EA7-45FB-B3E7-D7DFD611666E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8ADCFBCB-3CD1-40C4-B2A5-28C51832D859}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8ADCFBCB-3CD1-40C4-B2A5-28C51832D859}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8ADCFBCB-3CD1-40C4-B2A5-28C51832D859}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8ADCFBCB-3CD1-40C4-B2A5-28C51832D859}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{0F032905-6FEF-4DC7-9A16-AF4B31744468} = {6E9844D8-C760-4F27-B69A-53CBCB166BB2}
 		{2FDE083B-8DBC-4324-9197-8AB978B07D88} = {6E9844D8-C760-4F27-B69A-53CBCB166BB2}
+		{0F032905-6FEF-4DC7-9A16-AF4B31744468} = {6E9844D8-C760-4F27-B69A-53CBCB166BB2}
 		{FEA81A60-3968-4B94-BE74-FCE8594A4899} = {6E9844D8-C760-4F27-B69A-53CBCB166BB2}
 		{C2D6FF51-B325-437E-BED1-089AD92FDC09} = {6E9844D8-C760-4F27-B69A-53CBCB166BB2}
 		{E37F695D-AA38-4239-8E65-5FF8AE45D71B} = {C2D6FF51-B325-437E-BED1-089AD92FDC09}
@@ -84,6 +90,7 @@ Global
 		{A732729E-916C-4EF0-ADDD-AD62F11D5253} = {0F032905-6FEF-4DC7-9A16-AF4B31744468}
 		{4DCF0B09-6A40-40C9-9BEF-FB77B60E3F93} = {0F032905-6FEF-4DC7-9A16-AF4B31744468}
 		{5BB4E6B3-2EA7-45FB-B3E7-D7DFD611666E} = {0F032905-6FEF-4DC7-9A16-AF4B31744468}
+		{8ADCFBCB-3CD1-40C4-B2A5-28C51832D859} = {C2D6FF51-B325-437E-BED1-089AD92FDC09}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CE968BE1-0F5D-4588-BCD7-B8CE8D674946}

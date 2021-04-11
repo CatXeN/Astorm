@@ -17,9 +17,9 @@ namespace AstormChatServer.SocketsManager
             Connections = connections;
         }
 
-        public virtual async Task OnConnected(WebSocket socket)
+        public virtual async Task OnConnected(WebSocket socket, string token)
         {
-            await Task.Run(() => { Connections.AddSocket(socket); });
+            await Task.Run(() => { Connections.AddSocket(socket, token); });
         }
 
         public virtual async Task OnDisconnected(WebSocket socket) => await Connections.RemoveSocketAsync(Connections.GetId(socket));
