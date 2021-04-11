@@ -1,6 +1,7 @@
 ﻿﻿using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Net.WebSockets;
 using System.Text;
 using System.Threading;
@@ -10,12 +11,23 @@ namespace AstormServerTest
 {
     class Program
     {
-        static void Main(string[] args) => StartWebSockets().GetAwaiter().GetResult();
-
-        public static async Task StartWebSockets()
+        static void Main(string[] args)
         {
+            var token = ClientHelper.GetAuthorization().GetAwaiter().GetResult();
+
+            StartWebSockets(token).GetAwaiter().GetResult();
+        }
+
+        public static async Task StartWebSockets(string token)
+        {
+            var uri = new Uri("ws://localhost:5000/ws");
+
             var client = new ClientWebSocket();
-            await client.ConnectAsync(new Uri("ws://localhost:5000/ws"), CancellationToken.None);
+            client.Options.Cookies = new CookieContainer();
+            client.Options.Cookies.Add(new Cookie("token", token) { Domain = uri.Host});
+
+
+            await client.ConnectAsync(uri, CancellationToken.None);
             Console.WriteLine($"web socket established @ {DateTime.Now:F}");
 
             var send = Task.Run(async () =>
