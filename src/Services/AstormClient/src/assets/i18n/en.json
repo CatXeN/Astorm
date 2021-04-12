@@ -4,6 +4,7 @@
     "putText": "Text something...",
     "welcomeIn": "Welcome in Astorm!",
     "password": "Password",
-    "remmemberPassword" : "Remmember Password",
-    "logIn" : "Log in"
+    "remmemberPassword" : "Remmember password",
+    "logIn" : "Log in",
+    "register": "Register"
 }
