@@ -23,7 +23,7 @@ namespace AstormChatServer.Handlers
         public override async Task Receive(WebSocket socket, WebSocketReceiveResult result, byte[] buffer)
         {
             var socketId = Connections.GetId(socket);
-            var message = $"{socketId} said: {Encoding.UTF8.GetString(buffer, 0, result.Count)}";
+            var message = $"{Encoding.UTF8.GetString(buffer, 0, result.Count)}"; //{socketId} said:
             await SendMessageToAll(message);
         }
     }
