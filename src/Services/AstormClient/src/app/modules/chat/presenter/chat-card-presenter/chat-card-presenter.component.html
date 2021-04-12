@@ -3,8 +3,8 @@
     <div class="chat__who-texted" *ngFor="let item of messages">
       <img src="https://newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg" class="friend__image">
       <div class="friend__overall">
-        <p class="friend__overall--name">Name</p>
-        <p class="friend__overall--message">{{item}}</p>
+        <p class="friend__overall--name">{{item.name}}</p>
+        <p class="friend__overall--message">{{item.content}}</p>
       </div>
 
     </div>

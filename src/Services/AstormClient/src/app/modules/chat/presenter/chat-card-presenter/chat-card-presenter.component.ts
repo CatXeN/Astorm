@@ -10,19 +10,20 @@ import { webSocket } from "rxjs/webSocket";
 export class ChatCardPresenterComponent implements OnInit {
 
   subject: any;
-  messages: Array<string> = [];
+  messages: Array<{content: string, name: string}> = [];
   text: string;
 
   constructor() {
     let token = localStorage.getItem('token');
-    this.subject = webSocket({url:'ws://localhost:5000/ws?token=' + token, deserializer: e => e.data});
+    this.subject = webSocket({url:'ws://localhost:5000/ws?token=' + token});
    }
 
   ngOnInit(): void {
       this.subject.subscribe({
         next : (data) => {
           console.log(data);
-          this.messages.push(data);
+          this.messages.push({name: data.Name, content: data.Content});
+          console.log(this.messages);
         },
         error : console.log,
         complete : () => {}
