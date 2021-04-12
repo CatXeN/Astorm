@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using Infrastructure.Identity.Contexts;
 using Infrastructure.Identity.DTOs;
@@ -17,10 +18,12 @@ namespace Infrastructure.Identity.Repositories
             _context = context;
         }
         
-        public async Task CreateUser(User user)
+        public async Task<Guid> CreateUser(User user)
         {
             await _context.AddAsync(user);
             await _context.SaveChangesAsync();
+
+            return user.Id;
         }
 
         public async Task<bool> UserAlreadyExist(string username) => await _context.Users.AnyAsync(x => x.Username == username);

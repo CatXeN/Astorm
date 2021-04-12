@@ -10,18 +10,23 @@ using Infrastructure.Identity.Repositories;
 using Microsoft.IdentityModel.Tokens;
 using Infrastructure.Identity.Options;
 using Microsoft.Extensions.Options;
+using Infrastructure.Identity.Repositories.Attributes;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace Infrastructure.Identity.Services.Identity
 {
     public class IdentityService : IIdentityService
     {
         private readonly IIdentityRepository _repository;
+        private readonly IAttributeRepository _attributeRepository;
         private readonly TokenConfig _config;
 
-        public IdentityService(IIdentityRepository repository, IOptions<TokenConfig> config)
+        public IdentityService(IIdentityRepository repository, IAttributeRepository attributeRepository, IOptions<TokenConfig> config)
         {
             _repository = repository;
             _config = config.Value;
+            _attributeRepository = attributeRepository;
         }
         
         public async Task<bool> CreateUser(SignUpRequest signUpRequest)
@@ -40,7 +45,24 @@ namespace Infrastructure.Identity.Services.Identity
                  PasswordSalt = salt
              };
 
-             await _repository.CreateUser(user);
+             var userId = await _repository.CreateUser(user);
+
+            if (signUpRequest.Attributes.Count > 0)
+            {
+                List<Models.Attribute> attributes = new List<Models.Attribute>();
+
+                foreach (var item in signUpRequest.Attributes)
+                {
+                    attributes = signUpRequest.Attributes.Select(x => new Models.Attribute
+                    {
+                        UserId = userId,
+                        Key = x.Key,
+                        Value = x.Value
+                    }).ToList();
+                }
+
+                await _attributeRepository.AddAttributes(attributes);
+            }
 
              return true;
         }

@@ -18,9 +18,15 @@ namespace Infrastructure.Identity.Repositories.Attributes
             _context = context;
         }
 
-        public async Task AddAttributes(Models.Attribute attribute)
+        public async Task AddAttribute(Models.Attribute attribute)
         {
             await _context.AddAsync(attribute);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task AddAttributes(List<Models.Attribute> attribute)
+        {
+            await _context.AddRangeAsync(attribute);
             await _context.SaveChangesAsync();
         }
 
