@@ -33,7 +33,7 @@ namespace Infrastructure.Identity.Services.Attributes
                 UserId = addAttributeRequest.UserId
             };
 
-            await _attributeRepository.AddAttributes(attribute);
+            await _attributeRepository.AddAttribute(attribute);
             return true;
         }
 
