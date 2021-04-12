@@ -28,7 +28,7 @@ namespace AstormAPI.Controllers
         public async Task<IActionResult> Authorization(SignInRequest loginInformation)
         {
             var token = await _identityService.Login(loginInformation);
-            return Ok(token);
+            return new JsonResult(token);
         }
     }
 }
