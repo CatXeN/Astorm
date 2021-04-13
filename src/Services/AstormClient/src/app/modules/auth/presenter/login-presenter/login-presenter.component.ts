@@ -8,7 +8,7 @@ import { AuthService } from '../../service/auth.service';
   templateUrl: './login-presenter.component.html',
   styleUrls: ['./login-presenter.component.scss']
 })
-export class LoginPresenterComponent implements OnInit {
+export class LoginPresenterComponent {
 
   hide = true;
 
@@ -18,9 +18,6 @@ export class LoginPresenterComponent implements OnInit {
   });
 
   constructor(private auth: AuthService, private route: Router) { }
-
-  ngOnInit(): void {
-  }
 
   loginto() {
     console.log(this.loginForm.value);

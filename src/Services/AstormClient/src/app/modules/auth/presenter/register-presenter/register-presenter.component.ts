@@ -10,7 +10,7 @@ import { AuthService } from '../../service/auth.service';
   templateUrl: './register-presenter.component.html',
   styleUrls: ['./register-presenter.component.scss']
 })
-export class RegisterPresenterComponent implements OnInit {
+export class RegisterPresenterComponent {
 
   hide: boolean;
 
@@ -23,8 +23,6 @@ export class RegisterPresenterComponent implements OnInit {
 
   constructor(private authService: AuthService, private route: Router) { }
 
-  ngOnInit(): void {
-  }
 
   register() {
 
