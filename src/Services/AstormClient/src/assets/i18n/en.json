@@ -1,5 +1,10 @@
 {
     "chat": "chat",
     "language": "language",
-    "putText": "Text something..."
+    "putText": "Text something...",
+    "welcomeIn": "Welcome in Astorm!",
+    "password": "Password",
+    "remmemberPassword" : "Remmember password",
+    "logIn" : "Log in",
+    "register": "Register"
 }

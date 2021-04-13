@@ -1,5 +1,10 @@
 {
     "chat": "czaty",
     "language": "język",
-    "putText": "Napisz coś..."
+    "putText": "Napisz coś...",
+    "welcomeIn": "Witamy w Astorm!",
+    "password": "Hasło",
+    "remmemberPassword": "Pamiętaj hasło",
+    "logIn": "Zaloguj się",
+    "register": "Zarejestruj się"
 }

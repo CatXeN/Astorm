@@ -1,10 +1,10 @@
 <div class="container">
   <div class="chat">
-    <div class="chat__who-texted">
+    <div class="chat__who-texted" *ngFor="let item of messages">
       <img src="https://newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg" class="friend__image">
       <div class="friend__overall">
-        <p class="friend__overall--name">Name</p>
-        <p class="friend__overall--message">Last message</p>
+        <p class="friend__overall--name">{{item.name}}</p>
+        <p class="friend__overall--message">{{item.content}}</p>
       </div>
 
     </div>
@@ -12,9 +12,9 @@
   <div class="input">
     <mat-form-field appearance="legacy" class="input--textfield">
       <mat-label>{{"putText" | translate}}</mat-label>
-      <input matInput placeholder="Placeholder">
+      <input matInput placeholder="Placeholder" [(ngModel)]="text">
       </mat-form-field>
-    <button mat-icon-button>
+    <button mat-icon-button (click)="sendMessage()">
       <mat-icon>send</mat-icon>
   </button>
   </div>

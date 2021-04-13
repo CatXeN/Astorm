@@ -13,9 +13,9 @@ namespace AstormServerTest
     {
         static void Main(string[] args)
         {
-            var token = ClientHelper.GetAuthorization().GetAwaiter().GetResult();
+           // var token = ClientHelper.GetAuthorization().GetAwaiter().GetResult();
 
-            StartWebSockets(token).GetAwaiter().GetResult();
+           // StartWebSockets(token).GetAwaiter().GetResult();
         }
 
         public static async Task StartWebSockets(string token)

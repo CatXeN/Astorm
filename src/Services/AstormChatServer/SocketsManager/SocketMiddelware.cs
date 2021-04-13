@@ -1,6 +1,8 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using AstormChatServer.Models;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Net.WebSockets;
 using System.Threading;
@@ -23,15 +25,27 @@ namespace AstormChatServer.SocketsManager
         {
             if (!context.WebSockets.IsWebSocketRequest)
                 return;
-
-            var token = context.Request.Cookies["token"];
+            
+            var token = context.Request.Query.FirstOrDefault(x => x.Key == "token").Value;
             var socket = await context.WebSockets.AcceptWebSocketAsync();
-            await Handler.OnConnected(socket, token);
+
+            var handler = new JwtSecurityTokenHandler();
+            var jsonToken = handler.ReadToken(token);
+            var tokenDecoded = jsonToken as JwtSecurityToken;
+
+            var tokenModel = new Token
+            {
+                Id = tokenDecoded.Claims.FirstOrDefault(x => x.Type == "nameid").Value,
+                Name = tokenDecoded.Claims.FirstOrDefault(x => x.Type == "unique_name").Value
+            };
+
+
+            await Handler.OnConnected(socket, tokenModel);
             await Receive(socket, async (result, buffer) =>
             {
                 if(result.MessageType == WebSocketMessageType.Text)
                 {
-                    await Handler.Receive(socket, result, buffer);
+                    await Handler.Receive(socket, result, buffer, tokenModel);
                 }
                 else if (result.MessageType == WebSocketMessageType.Close)
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AstormChatServer.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.WebSockets;
@@ -17,7 +18,7 @@ namespace AstormChatServer.SocketsManager
             Connections = connections;
         }
 
-        public virtual async Task OnConnected(WebSocket socket, string token)
+        public virtual async Task OnConnected(WebSocket socket, Token token)
         {
             await Task.Run(() => { Connections.AddSocket(socket, token); });
         }
@@ -42,6 +43,6 @@ namespace AstormChatServer.SocketsManager
                 await SendMessage(con.Value, message);
         }
 
-        public abstract Task Receive(WebSocket socket, WebSocketReceiveResult result, byte[] buffer);
+        public abstract Task Receive(WebSocket socket, WebSocketReceiveResult result, byte[] buffer, Token token);
     }
 }

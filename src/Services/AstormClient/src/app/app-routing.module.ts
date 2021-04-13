@@ -4,7 +4,7 @@ import { MainLayoutComponent } from './core/main-layout/main-layout.component';
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'chat',
     component: MainLayoutComponent,
     children: [
       {
@@ -12,7 +12,21 @@ const routes: Routes = [
         loadChildren: () => import('./modules/chat/chat.module').then(x => x.ChatModule)
       }
     ]
-  }
+  },
+  {
+    path: 'auth',
+    children: [
+      {
+        path: '',
+        loadChildren: () => import('./modules/auth/auth.module').then(a => a.AuthModule)
+      }
+    ]
+  },
+  {
+    path: '**',
+    redirectTo: '/auth/login'
+
+  },
 ];
 
 @NgModule({
