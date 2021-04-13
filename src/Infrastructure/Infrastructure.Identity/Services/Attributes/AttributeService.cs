@@ -26,7 +26,7 @@ namespace Infrastructure.Identity.Services.Attributes
             if (await _attributeRepository.AttributeExist(addAttributeRequest.Key, addAttributeRequest.UserId))
                 throw new InvalidOperationException("This attribute already exist");
 
-            var attribute = new Models.Attribute
+            var attribute = new AstormDomain.Entities.Attribute
             {
                 Key = addAttributeRequest.Key,
                 Value = addAttributeRequest.Value,
@@ -48,7 +48,7 @@ namespace Infrastructure.Identity.Services.Attributes
             if (!await _attributeRepository.AttributeExist(removeAttributeRequest.Key, removeAttributeRequest.UserId))
                 throw new InvalidOperationException("Attribute not exist");
 
-            Models.Attribute attribute = new Models.Attribute
+            AstormDomain.Entities.Attribute attribute = new AstormDomain.Entities.Attribute
             {
                 UserId = removeAttributeRequest.UserId,
                 Key = removeAttributeRequest.Key
@@ -66,7 +66,7 @@ namespace Infrastructure.Identity.Services.Attributes
             if (string.IsNullOrEmpty(updateAttributeRequest.Value))
                 throw new InvalidOperationException("Empty value");
 
-            Models.Attribute attribute = new Models.Attribute
+            AstormDomain.Entities.Attribute attribute = new AstormDomain.Entities.Attribute
             {
                 Key = updateAttributeRequest.Key,
                 Value = updateAttributeRequest.Value,

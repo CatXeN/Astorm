@@ -1,5 +1,4 @@
-﻿using Infrastructure.Identity.Models;
-using System;
+﻿using System;
 using System.Threading.Tasks;
 using Infrastructure.Identity.DTOs;
 

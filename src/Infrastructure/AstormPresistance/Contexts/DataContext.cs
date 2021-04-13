@@ -9,9 +9,10 @@ namespace AstormPresistance.Contexts
         public DbSet<Channel> Channels { get; set; }
         public DbSet<ChannelMessage> ChannelsMessages { get; set; }
         public DbSet<Server> Servers { get; set; }
-        public DbSet<User> Users { get; set; }
         public DbSet<UserMessage> UsersMessages { get; set; }
         public DbSet<AssignUsersToServer> AssignUsersToServers { get; set; }
+        public DbSet<User> Users { get; set; }
+        public DbSet<Attribute> Attributes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

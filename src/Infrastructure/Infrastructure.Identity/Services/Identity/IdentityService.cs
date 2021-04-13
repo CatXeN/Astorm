@@ -1,5 +1,4 @@
-﻿using Infrastructure.Identity.Models;
-using System;
+﻿using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -13,6 +12,7 @@ using Microsoft.Extensions.Options;
 using Infrastructure.Identity.Repositories.Attributes;
 using System.Linq;
 using System.Collections.Generic;
+using AstormDomain.Entities;
 
 namespace Infrastructure.Identity.Services.Identity
 {
@@ -49,11 +49,11 @@ namespace Infrastructure.Identity.Services.Identity
 
             if (signUpRequest.Attributes.Count > 0)
             {
-                List<Models.Attribute> attributes = new List<Models.Attribute>();
+                List<AstormDomain.Entities.Attribute> attributes = new List<AstormDomain.Entities.Attribute>();
 
                 foreach (var item in signUpRequest.Attributes)
                 {
-                    attributes = signUpRequest.Attributes.Select(x => new Models.Attribute
+                    attributes = signUpRequest.Attributes.Select(x => new AstormDomain.Entities.Attribute
                     {
                         UserId = userId,
                         Key = x.Key,

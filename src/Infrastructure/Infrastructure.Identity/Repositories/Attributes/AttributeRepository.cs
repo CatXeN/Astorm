@@ -1,4 +1,4 @@
-﻿using Infrastructure.Identity.Contexts;
+﻿using AstormPresistance.Contexts;
 using Infrastructure.Identity.DTOs.Attributes;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,20 +11,20 @@ namespace Infrastructure.Identity.Repositories.Attributes
 {
     public class AttributeRepository : IAttributeRepository
     {
-        private readonly AuthContext _context;
+        private readonly DataContext _context;
 
-        public AttributeRepository(AuthContext context)
+        public AttributeRepository(DataContext context)
         {
             _context = context;
         }
 
-        public async Task AddAttribute(Models.Attribute attribute)
+        public async Task AddAttribute(AstormDomain.Entities.Attribute attribute)
         {
             await _context.AddAsync(attribute);
             await _context.SaveChangesAsync();
         }
 
-        public async Task AddAttributes(List<Models.Attribute> attribute)
+        public async Task AddAttributes(List<AstormDomain.Entities.Attribute> attribute)
         {
             await _context.AddRangeAsync(attribute);
             await _context.SaveChangesAsync();
@@ -36,7 +36,7 @@ namespace Infrastructure.Identity.Repositories.Attributes
         public async Task<Dictionary<string, string>> GetAttributesOfUser(Guid userId) =>
             await _context.Attributes.Where(x => x.UserId == userId).ToDictionaryAsync(d => d.Key, d => d.Value);
 
-        public async Task RemoveAttribute(Models.Attribute attribute)
+        public async Task RemoveAttribute(AstormDomain.Entities.Attribute attribute)
         {
             var attrToDelete = await _context.Attributes.
                 FirstOrDefaultAsync(x => x.Key == attribute.Key && x.UserId == attribute.UserId);
@@ -44,7 +44,7 @@ namespace Infrastructure.Identity.Repositories.Attributes
             await _context.SaveChangesAsync();
         }
 
-        public async Task UpdateAttribute(Models.Attribute attribute)
+        public async Task UpdateAttribute(AstormDomain.Entities.Attribute attribute)
         {
             var attributeToUpdate = await _context.Attributes.
                 FirstOrDefaultAsync(x => x.Key == attribute.Key && x.UserId == attribute.UserId);

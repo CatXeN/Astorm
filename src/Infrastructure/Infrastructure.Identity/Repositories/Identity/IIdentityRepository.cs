@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using Infrastructure.Identity.Models;
+using AstormDomain.Entities;
 
 namespace Infrastructure.Identity.Repositories
 {

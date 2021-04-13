@@ -1,19 +1,16 @@
 ﻿using System;
-using System.Linq;
 using System.Threading.Tasks;
-using Infrastructure.Identity.Contexts;
-using Infrastructure.Identity.DTOs;
-using Infrastructure.Identity.Models;
+using AstormDomain.Entities;
+using AstormPresistance.Contexts;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Storage;
 
 namespace Infrastructure.Identity.Repositories
 {
     public class IdentityRepository : IIdentityRepository
     {
-        private readonly AuthContext _context;
+        private readonly DataContext _context;
 
-        public IdentityRepository(AuthContext context)
+        public IdentityRepository(DataContext context)
         {
             _context = context;
         }

@@ -1,5 +1,4 @@
 ﻿using System.Text;
-using Infrastructure.Identity.Contexts;
 using Infrastructure.Identity.Options;
 using Infrastructure.Identity.Repositories;
 using Infrastructure.Identity.Repositories.Attributes;
@@ -17,7 +16,6 @@ namespace Infrastructure.Identity
     {
         public static void AddAuthenticationLibrary(this IServiceCollection services, IConfiguration configuration)
         {
-            services.AddDbContext<AuthContext>(x => x.UseSqlServer(configuration.GetConnectionString("AuthConnection"), b => b.MigrationsAssembly("AstormAPI")));
             services.AddTransient<IIdentityService, IdentityService>();
             services.AddTransient<IIdentityRepository, IdentityRepository>();
             services.AddTransient<IAttributeService, AttributeService>();

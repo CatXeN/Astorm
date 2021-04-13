@@ -15,4 +15,12 @@
       </PackageReference>
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Contexts\" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\AstormPresistance\AstormPresistance.csproj" />
+    </ItemGroup>
+
 </Project>
