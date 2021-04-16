@@ -14,7 +14,7 @@
         display: flex;
         align-items: center;
         height: 8%;
-        
+
         &__chat-text {
             margin-left: 5%;
             width: 100%;
@@ -35,6 +35,7 @@
         align-items: center;
 
         .friend {
+          margin-top: 3%;
             width: 90%;
             display: flex;
 
@@ -62,6 +63,9 @@
                 }
 
             }
+        }
+        .friend:hover {
+          background-color: #d4d4d44b;
         }
     }
 }

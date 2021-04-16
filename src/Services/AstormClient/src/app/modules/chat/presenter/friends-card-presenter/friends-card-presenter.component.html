@@ -6,15 +6,15 @@
           </button>
     </div>
     <div class="friend-container">
-        <div class="friend">
-            <img 
+        <div class="friend" *ngFor="let item of friends" (click)="selectFriend(item)">
+            <img
             src="https://newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg"
             class="friend__image">
             <div class="friend__overall">
-                <p class="friend__overall--name">Name</p>
+                <p class="friend__overall--name">{{item.friend.username}}</p>
                 <p class="friend__overall--message">Last message</p>
             </div>
         </div>
-    
+
     </div>
 </div>

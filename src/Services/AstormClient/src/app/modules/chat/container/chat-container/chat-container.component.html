@@ -1,6 +1,6 @@
 <div class="container">
     <app-menu-card-presenter></app-menu-card-presenter>
-    <app-friends-card-presenter></app-friends-card-presenter>
-    <app-chat-card-presenter></app-chat-card-presenter>
+    <app-friends-card-presenter (selectedFriendEmitter)="selectedFriendOutput($event)" [friendList]="$friends | async" ></app-friends-card-presenter>
+    <app-chat-card-presenter [selectedFriend]="selectedFriend"></app-chat-card-presenter>
     <app-operation-card-presenter></app-operation-card-presenter>
 </div>

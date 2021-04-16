@@ -1,4 +1,7 @@
 <div class="container">
+  <div class="header" *ngIf="friend">
+    <p>{{friend.friend.username}}</p>
+  </div>
   <div class="chat">
     <div class="chat__who-texted" *ngFor="let item of messages">
       <img src="https://newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg" class="friend__image">

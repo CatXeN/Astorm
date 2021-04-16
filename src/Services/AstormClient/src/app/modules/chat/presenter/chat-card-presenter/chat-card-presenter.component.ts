@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { webSocket } from "rxjs/webSocket";
+import { Friend } from 'src/app/shared/models/friend.model';
+import { FriendEffects } from '../../store/effects/friend.effects';
 
 
 @Component({
@@ -12,6 +14,13 @@ export class ChatCardPresenterComponent implements OnInit {
   subject: any;
   messages: Array<{content: string, name: string}> = [];
   text: string;
+  friend: Friend;
+
+  @Input() set selectedFriend(value: Friend) {
+    if(value){
+      this.friend = value;
+    }
+  }
 
   constructor() {
     let token = localStorage.getItem('token');
@@ -36,4 +45,10 @@ export class ChatCardPresenterComponent implements OnInit {
       this.subject.next(this.text);
     }
   }
+
+  getFriendInfo() {
+
+  }
 }
+
+
