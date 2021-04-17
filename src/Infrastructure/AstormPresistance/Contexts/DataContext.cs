@@ -1,5 +1,6 @@
 ﻿using AstormDomain.Entities;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace AstormPresistance.Contexts
 {
@@ -13,6 +14,7 @@ namespace AstormPresistance.Contexts
         public DbSet<AssignUsersToServer> AssignUsersToServers { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<Attribute> Attributes { get; set; }
+        public DbSet<FriendOfUser> FriendsOfUsers { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -39,8 +41,17 @@ namespace AstormPresistance.Contexts
                 .WithMany(t => t.UserMessages)
                 .HasForeignKey(f => f.OwnerId)
                 .OnDelete(DeleteBehavior.Restrict);
-            
-            
+
+            modelBuilder.Entity<FriendOfUser>()
+                .HasOne(p => p.Friend)
+                .WithOne()
+                .OnDelete(DeleteBehavior.Restrict);
+
+        }
+
+        internal Task AddAsync(object friendToAdd)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
