@@ -1,10 +1,10 @@
-﻿using AstormDomain.Common;
-using AstormDomain.Entities;
+﻿using AstormApplication.DTOs;
 using AstormPresistance.Contexts;
+using AutoMapper;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AstormPresistance.Repositories.Messeges
@@ -12,17 +12,23 @@ namespace AstormPresistance.Repositories.Messeges
     public class MessageRepository : IMessageRepository
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public MessageRepository(DataContext context)
+        public MessageRepository(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
 
-
-        public async Task AddMessage(AstormDomain.Entities.UserMessage message)
+        public async Task<IEnumerable<UserMessageInformation>> GetUserMessage(GetUserMessageInformation getUserMessageInformation)
         {
-            await _context.UsersMessages.AddAsync(message);
-            await _context.SaveChangesAsync();
+            var messages = await _context.UsersMessages
+                .OrderBy(y => y.SendMessageDate)
+                .Where(x => (x.OwnerId == getUserMessageInformation.FriendId || x.OwnerId == getUserMessageInformation.UserId) 
+                && (x.RecipientId == getUserMessageInformation.FriendId|| x.RecipientId == getUserMessageInformation.UserId))
+                .ToListAsync();
+
+            return _mapper.Map<IEnumerable<UserMessageInformation>>(messages);
         }
     }
 }
