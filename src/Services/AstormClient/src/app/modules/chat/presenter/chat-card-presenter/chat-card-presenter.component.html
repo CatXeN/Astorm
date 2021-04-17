@@ -3,11 +3,11 @@
     <p>{{friend.friend.username}}</p>
   </div>
   <div class="chat">
-    <div class="chat__who-texted" *ngFor="let item of messages">
+    <div class="chat__who-texted" *ngFor="let item of filtrMessages()">
       <img src="https://newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg" class="friend__image">
       <div class="friend__overall">
         <p class="friend__overall--name">{{item.name}}</p>
-        <p class="friend__overall--message">{{item.content}}</p>
+        <p class="friend__overall--message">{{item.content.content}}</p>
       </div>
 
     </div>

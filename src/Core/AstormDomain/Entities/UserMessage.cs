@@ -4,7 +4,7 @@ using AstormDomain.Common;
 
 namespace AstormDomain.Entities
 {
-    public class UserMessage : Message
+    public class UserMessage : Common.UserMessage
     {
         public Guid RecipientId { get; set; }
         

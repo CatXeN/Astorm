@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { MessageUser } from './../../../../shared/models/messsageUser.model';
+import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { webSocket } from "rxjs/webSocket";
 import { Friend } from 'src/app/shared/models/friend.model';
 import { FriendEffects } from '../../store/effects/friend.effects';
@@ -9,11 +10,9 @@ import { FriendEffects } from '../../store/effects/friend.effects';
   templateUrl: './chat-card-presenter.component.html',
   styleUrls: ['./chat-card-presenter.component.scss']
 })
-export class ChatCardPresenterComponent implements OnInit {
-
-  subject: any;
-  messages: Array<{content: string, name: string}> = [];
+export class ChatCardPresenterComponent {
   text: string;
+  messages: Array<{content: MessageUser, name: string}> = [];
   friend: Friend;
 
   @Input() set selectedFriend(value: Friend) {
@@ -22,32 +21,35 @@ export class ChatCardPresenterComponent implements OnInit {
     }
   }
 
-  constructor() {
-    let token = localStorage.getItem('token');
-    this.subject = webSocket({url:'ws://localhost:5000/ws?token=' + token});
-   }
-
-  ngOnInit(): void {
-      this.subject.subscribe({
-        next : (data) => {
-          console.log(data);
-          this.messages.push({name: data.Name, content: data.Content});
-          console.log(this.messages);
-        },
-        error : console.log,
-        complete : () => {}
-      }
-    );
+  @Input() set SetMessages(value: Array<{content: MessageUser, name: string}>) {
+    if (value) {
+      this.messages = value;
+    }
   }
 
+  @Output() sendMessageEmitter = new EventEmitter<MessageUser>();
+
   sendMessage() {
-    if(this.text !== undefined) {
-      this.subject.next(this.text);
+    let message: MessageUser = {
+      friendId: this.friend.friendId,
+      content: this.text,
+      userId: ''
+    };
+
+    if (message.content !== "") {
+      this.sendMessageEmitter.emit(message);
     }
   }
 
   getFriendInfo() {
 
+  }
+
+  filtrMessages() {
+    console.log(this.friend.friendId);
+    console.log(this.messages);
+    return this.messages.
+      filter(x => x.content.userId == this.friend.friendId || x.content.friendId == this.friend.friendId);
   }
 }
 
