@@ -3,6 +3,8 @@ import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
 import { webSocket } from "rxjs/webSocket";
 import { Friend } from 'src/app/shared/models/friend.model';
 import { FriendEffects } from '../../store/effects/friend.effects';
+import { Message } from 'src/app/shared/models/message.model';
+import { GetMessage } from 'src/app/shared/models/getMessage.model';
 
 
 @Component({
@@ -41,15 +43,15 @@ export class ChatCardPresenterComponent {
     }
   }
 
-  getFriendInfo() {
-
-  }
-
   filtrMessages() {
     console.log(this.friend.friendId);
     console.log(this.messages);
     return this.messages.
       filter(x => x.content.userId == this.friend.friendId || x.content.friendId == this.friend.friendId);
+  }
+
+  getMessage() {
+
   }
 }
 

@@ -9,5 +9,8 @@ export const ApiEndpoints = {
   friend: {
     getFriend: `${environment.apiUrl}/api/Friend/{0}`,
     addFriend : `${environment.apiUrl}//api/Friend/`
+  },
+  message: {
+    getMessage: `${environment.apiUrl}/api/Message`
   }
 }

@@ -1,4 +1,5 @@
 import { HttpClient } from '@angular/common/http';
+import { Message } from '@angular/compiler/src/i18n/i18n_ast';
 import { stringify } from '@angular/compiler/src/util';
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
@@ -23,4 +24,5 @@ export class FriendService {
   getFriendList(userId: string): Observable<Friend[]> {
     return this.http.get<Friend[]>(ApiEndpoints.friend.getFriend.format(String(userId)));
   }
+
 }

@@ -17,6 +17,7 @@ import { environment } from 'src/environments/environment';
 import { AppState } from './app.interfaces';
 import { CustomRouterStateSerializer } from './state.utilities';
 import { FriendEffects } from 'src/app/modules/chat/store/effects/friend.effects';
+import { MessageEffects } from 'src/app/modules/chat/store/effects/message.effects';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { FriendEffects } from 'src/app/modules/chat/store/effects/friend.effects
     // StoreModule.forRoot(appReducer, { metaReducers: appMetaReducers }),
     StoreModule.forRoot(appReducer),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
-    EffectsModule.forRoot([FriendEffects]),
+    EffectsModule.forRoot([FriendEffects, MessageEffects]),
   ],
   declarations: [],
 })

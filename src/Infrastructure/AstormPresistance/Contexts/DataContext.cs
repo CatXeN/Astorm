@@ -28,7 +28,7 @@ namespace AstormPresistance.Contexts
                 .HasOne(p => p.Owner)
                 .WithMany(t => t.OwnerMessages)
                 .HasForeignKey(f => f.OwnerId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.Restrict); //TODO: look at this
             
             modelBuilder.Entity<ChannelMessage>()
                 .HasOne(p => p.Channel)

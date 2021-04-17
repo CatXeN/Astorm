@@ -5,8 +5,11 @@ import { webSocket } from 'rxjs/webSocket';
 import { Friend } from 'src/app/shared/models/friend.model';
 import { MessageUser } from 'src/app/shared/models/messsageUser.model';
 import { AppState } from 'src/app/shared/state/app.interfaces';
-import { getFriends } from '../../store';
+import { getFriends } from '../../store/selectors';
 import { LoadFriend } from '../../store/actions/friend.actions';
+import { GetMessage } from 'src/app/shared/models/getMessage.model';
+import { LoadMessage } from '../../store/actions/message.action';
+import { getMessages } from '../../store/selectors/message.selector';
 
 @Component({
   selector: 'app-chat-container',
@@ -43,6 +46,7 @@ export class ChatContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(LoadFriend({userId: this.userId}));
+
     this.$friends = this.store.pipe(select(getFriends));
   }
 
@@ -54,5 +58,26 @@ export class ChatContainerComponent implements OnInit {
   selectedFriendOutput($event: Friend):void {
     this.selectedFriend = $event;
     console.log(this.selectedFriend);
+
+    this.getMessages(this.selectedFriend.friendId);
+  }
+
+  getMessages(recipentId: string):void {
+    let json: GetMessage = {
+      userId: this.userId,
+      friendId: recipentId
+    }
+    this.store.dispatch(LoadMessage({getMessage: json}))
+    this.store.pipe(select(getMessages)).subscribe(m => {
+      this.messages = [];
+      m.forEach(x => {
+        let messageUser: MessageUser = {
+          userId: x.ownerId,
+          friendId: x.recipentId,
+          content: x.content
+        }
+        this.messages.push({name: x.owner.username, content: messageUser})
+      })
+    })
   }
 }

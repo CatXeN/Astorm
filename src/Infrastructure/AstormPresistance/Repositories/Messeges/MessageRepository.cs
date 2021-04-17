@@ -23,6 +23,7 @@ namespace AstormPresistance.Repositories.Messeges
         public async Task<IEnumerable<UserMessageInformation>> GetUserMessage(GetUserMessageInformation getUserMessageInformation)
         {
             var messages = await _context.UsersMessages
+                .Include(x => x.Owner)
                 .OrderBy(y => y.SendMessageDate)
                 .Where(x => (x.OwnerId == getUserMessageInformation.FriendId || x.OwnerId == getUserMessageInformation.UserId) 
                 && (x.RecipientId == getUserMessageInformation.FriendId|| x.RecipientId == getUserMessageInformation.UserId))
