@@ -46,12 +46,6 @@ namespace AstormPresistance.Contexts
                 .HasOne(p => p.Friend)
                 .WithOne()
                 .OnDelete(DeleteBehavior.Restrict);
-
-        }
-
-        internal Task AddAsync(object friendToAdd)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

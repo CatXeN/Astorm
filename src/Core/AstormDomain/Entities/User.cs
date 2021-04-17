@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AstormDomain.Enums;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -13,6 +14,7 @@ namespace AstormDomain.Entities
         public string Username { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
+        public UserStatus UserStatus { get; set; }
 
         public ICollection<UserMessage> OwnerMessages { get; } = new List<UserMessage>();
         public ICollection<UserMessage> RecipientMessages { get; } = new List<UserMessage>();

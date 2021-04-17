@@ -1,7 +1,9 @@
 ﻿using AstormChatServer.Models;
 using AstormChatServer.SocketsManager;
 using AstormDomain.Entities;
+using AstormDomain.Enums;
 using AstormPresistance.Contexts;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -15,18 +17,31 @@ namespace AstormChatServer.Handlers
 {
     public class WebSocketMessageHandler : SocketHandler
     {
-        private readonly IServiceScope _scope;
+        private readonly IServiceProvider _services;
 
         public WebSocketMessageHandler(ConnectionManager connections, IServiceProvider services) : base (connections) 
         {
-            _scope = services.CreateScope();
+            _services = services;
         }
 
         public override async Task OnConnected(WebSocket socket, Token token)
         {
             await base.OnConnected(socket, token);
 
-            var socketId = Connections.GetId(socket);
+            using (var scope = _services.CreateScope())
+            {
+                var _context = scope.ServiceProvider.GetRequiredService<DataContext>();
+
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Guid.Parse(token.Id));
+                user.UserStatus = UserStatus.Online;
+
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+            }
+
+            //Connections.AddSocket(socket, token);
+
+            //var socketId = Connections.GetId(socket);
             //await SendMessageToAll($"{socketId} just joined :)");
         }
 
@@ -43,10 +58,12 @@ namespace AstormChatServer.Handlers
             var objectJson = JObject.Parse(json);
             var content = JObject.Parse(objectJson["content"].Value<string>());
 
-            using (var _context = _scope.ServiceProvider.GetRequiredService<DataContext>())
+            using (var scope = _services.CreateScope())
             {
+                var _context = scope.ServiceProvider.GetRequiredService<DataContext>();
+
                 var userId = Guid.Parse(content["userId"].Value<string>());
-                var friendId = Guid.Parse(content["friendId"].Value<string>());                
+                var friendId = Guid.Parse(content["friendId"].Value<string>());
 
                 UserMessage userMessage = new UserMessage
                 {
@@ -60,9 +77,25 @@ namespace AstormChatServer.Handlers
                 await _context.SaveChangesAsync();
             }
 
-
             var message = $"{json}"; //{socketId} said:
             await SendMessageToAll(message);
+        }
+
+        public override async Task OnDisconnected(WebSocket socket)
+        {
+            var userId = Connections.GetId(socket);
+            await base.OnDisconnected(socket);
+
+            using (var scope = _services.CreateScope())
+            {
+                var _context = scope.ServiceProvider.GetRequiredService<DataContext>();
+
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == Guid.Parse(userId));
+                user.UserStatus = UserStatus.Offline;
+
+                _context.Update(user);
+                await _context.SaveChangesAsync();
+            }
         }
     }
 }
