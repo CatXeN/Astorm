@@ -6,5 +6,8 @@
     "password": "Password",
     "remmemberPassword" : "Remmember password",
     "logIn" : "Log in",
-    "register": "Register"
+    "register": "Register",
+    "online": "Online",
+    "afk": "Away from keyboard",
+    "dnd": "Do not disturb"
 }

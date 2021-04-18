@@ -5,7 +5,7 @@ using AstormDomain.Entities;
 
 namespace AstormDomain.Common
 {
-    public class Message
+    public class UserMessage
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]

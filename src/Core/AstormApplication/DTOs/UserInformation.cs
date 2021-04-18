@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Text.Json.Serialization;
 using AstormDomain.Entities;
 
 namespace AstormApplication.DTOs
@@ -14,9 +15,5 @@ namespace AstormApplication.DTOs
         public string Phone { get; set; }
         public string Photo { get; set; }
         public string Description { get; set; }
-        
-        public IEnumerable<UserMessage> OwnerMessages { get; }
-        public IEnumerable<UserMessage> RecipientMessages { get; }
-        public IEnumerable<ChannelMessage> UserMessages { get; }
     }
 }

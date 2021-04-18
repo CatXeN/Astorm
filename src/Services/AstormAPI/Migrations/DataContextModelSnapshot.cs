@@ -122,7 +122,8 @@ namespace AstormAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FriendId");
+                    b.HasIndex("FriendId")
+                        .IsUnique();
 
                     b.HasIndex("UserId");
 
@@ -160,6 +161,9 @@ namespace AstormAPI.Migrations
 
                     b.Property<byte[]>("PasswordSalt")
                         .HasColumnType("varbinary(max)");
+
+                    b.Property<int>("UserStatus")
+                        .HasColumnType("int");
 
                     b.Property<string>("Username")
                         .HasColumnType("nvarchar(max)");
@@ -259,8 +263,8 @@ namespace AstormAPI.Migrations
             modelBuilder.Entity("AstormDomain.Entities.FriendOfUser", b =>
                 {
                     b.HasOne("AstormDomain.Entities.User", "Friend")
-                        .WithMany("UserFriends")
-                        .HasForeignKey("FriendId")
+                        .WithOne()
+                        .HasForeignKey("AstormDomain.Entities.FriendOfUser", "FriendId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -304,8 +308,6 @@ namespace AstormAPI.Migrations
                     b.Navigation("OwnerMessages");
 
                     b.Navigation("RecipientMessages");
-
-                    b.Navigation("UserFriends");
 
                     b.Navigation("UserMessages");
                 });

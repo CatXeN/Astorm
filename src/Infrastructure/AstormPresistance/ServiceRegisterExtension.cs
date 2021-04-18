@@ -1,5 +1,7 @@
 ﻿using AstormPresistance.Contexts;
 using AstormPresistance.Repositories.Friend;
+using AstormPresistance.Repositories.Messeges;
+using AstormPresistance.Repositories.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -14,6 +16,8 @@ namespace AstormPresistance
             services.AddDbContext<DataContext>(x => x.UseSqlServer(configuration.GetConnectionString("DefaultConnection"),b => b.MigrationsAssembly("AstormAPI")));
 
             services.AddTransient<IFriendRepository, FriendRepository>();
+            services.AddTransient<IMessageRepository, MessageRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
     }
 }

@@ -5,5 +5,15 @@ export const ApiEndpoints = {
   auth: {
     register: `${environment.apiUrl}/api/Auth/register`,
     login: `${environment.apiUrl}/api/Auth/authorization`
+  },
+  friend: {
+    getFriend: `${environment.apiUrl}/api/Friend/{0}`,
+    addFriend : `${environment.apiUrl}//api/Friend/`
+  },
+  message: {
+    getMessage: `${environment.apiUrl}/api/Message`
+  },
+  user: {
+    changeStatus: `${environment.apiUrl}/api/User/changeStatus/{0}&{1}`
   }
 }

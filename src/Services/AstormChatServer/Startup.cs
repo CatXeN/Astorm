@@ -1,19 +1,15 @@
+using AstormApplication;
 using AstormChatServer.Handlers;
 using AstormChatServer.SocketsManager;
+using AstormPresistance.Contexts;
+using AstormPresistance.Repositories.Messeges;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using Microsoft.OpenApi.Models;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AstormChatServer
 {
@@ -30,6 +26,8 @@ namespace AstormChatServer
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddWebSocketManager();
+            services.AddApplicationLayer();
+            services.AddDbContext<DataContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"), b => b.MigrationsAssembly("AstormAPI")));
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
