@@ -11,7 +11,11 @@
     <img class="user__profile"
       src="https://media1.s-nbcnews.com/i/newscms/2015_02/835681/150106-mia-khalifa-830a_bcc977bc287eeeb9c3148b332b0e1a7b.jpg">
       <button mat-icon-button [matMenuTriggerFor]="activity" class="user__activity">
-        <mat-icon class="online">brightness_1</mat-icon>
+        <mat-icon [ngClass]="{
+          'online': status == 1,
+          'away': status == 2,
+          'not-disturb': status == 3
+         }">brightness_1</mat-icon>
       </button>
       <mat-menu #activity="matMenu">
         <button mat-menu-item (click)="setStatus(1)">

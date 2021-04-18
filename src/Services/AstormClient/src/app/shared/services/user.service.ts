@@ -9,10 +9,7 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
-  changeStatus(statusId, userId) {
-
-    var args = [statusId, userId];
-
-    return this.http.post(ApiEndpoints.user.changeStatus.format(String()))
+  changeStatus(status: number, userId: string) {
+    return this.http.get(ApiEndpoints.user.changeStatus.format(String(status), String(userId)));
   }
 }

@@ -11,6 +11,7 @@ export class ToolbarComponent implements OnInit {
 
   username: string;
   userId: string;
+  status = 1;
 
   constructor(private translate: TranslateService, private userService: UserService) {
     translate.setDefaultLang('en');
@@ -26,7 +27,8 @@ export class ToolbarComponent implements OnInit {
   }
 
   setStatus(status: number) {
-    console.log(status);
-    this.userService.changeStatus(status, this.userId);
+    this.userService.changeStatus(status, this.userId).subscribe(x => {
+      this.status = status;
+    });
   }
 }
