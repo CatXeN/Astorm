@@ -1,3 +1,5 @@
+
+
 .container {
     background-color: #fff;
     box-shadow: 0px 5px 10px 3px rgba(0, 0, 0, 0.25);
@@ -62,6 +64,13 @@
                     color: #696969;
                 }
 
+            }
+
+            &__status {
+              display: flex;
+              justify-content: flex-end;
+              margin-top: 1%;
+              width: 90%;
             }
         }
         .friend:hover {

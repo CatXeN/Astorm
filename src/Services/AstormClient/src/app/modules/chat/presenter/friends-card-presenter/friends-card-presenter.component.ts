@@ -12,6 +12,7 @@ export class FriendsCardPresenterComponent  {
 
   friends: Friend[]
 
+
   @Input() set friendList(value: Friend[]) {
     if(value) {
       this.friends = value;
@@ -21,4 +22,5 @@ export class FriendsCardPresenterComponent  {
   selectFriend(friend: Friend): void {
     this.selectedFriendEmitter.emit(friend);
   }
+
 }

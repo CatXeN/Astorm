@@ -12,5 +12,8 @@ export const ApiEndpoints = {
   },
   message: {
     getMessage: `${environment.apiUrl}/api/Message`
+  },
+  user: {
+    changeStatus: `${environment.apiUrl}/api/User/changeStatus/{0}&{1}`
   }
 }

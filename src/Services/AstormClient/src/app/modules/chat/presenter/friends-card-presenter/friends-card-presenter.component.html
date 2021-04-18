@@ -14,7 +14,14 @@
                 <p class="friend__overall--name">{{item.friend.username}}</p>
                 <p class="friend__overall--message">Last message</p>
             </div>
+            <div class="friend__status">
+              <mat-icon [ngClass]="{
+                'offline': item.friend.userStatus == 0,
+                'online': item.friend.userStatus == 1,
+                'away': item.friend.userStatus == 2,
+                'not-disturb': item.friend.userStatus == 3
+               }">brightness_1</mat-icon>
+            </div>
         </div>
-
     </div>
 </div>

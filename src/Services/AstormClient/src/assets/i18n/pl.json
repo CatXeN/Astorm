@@ -6,5 +6,8 @@
     "password": "Hasło",
     "remmemberPassword": "Pamiętaj hasło",
     "logIn": "Zaloguj się",
-    "register": "Zarejestruj się"
+    "register": "Zarejestruj się",
+    "online": "Dostępny",
+    "afk": "Zaraz wracam",
+    "dnd": "Nie przeszkadzać"
 }
