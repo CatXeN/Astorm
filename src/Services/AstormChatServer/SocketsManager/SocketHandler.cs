@@ -31,8 +31,10 @@ namespace AstormChatServer.SocketsManager
             if (socket.State != WebSocketState.Open)
                 return;
 
+            var bytesOfMessage = Encoding.UTF8.GetBytes(message);
+
             await socket.SendAsync(
-                new ArraySegment<byte>(Encoding.ASCII.GetBytes(message), 0, message.Length),
+                new ArraySegment<byte>(bytesOfMessage, 0, bytesOfMessage.Length),
                 WebSocketMessageType.Text, true, CancellationToken.None);
         }
 

@@ -40,12 +40,11 @@ export class ChatCardPresenterComponent {
 
     if (message.content !== "") {
       this.sendMessageEmitter.emit(message);
+      this.text = "";
     }
   }
 
   filtrMessages() {
-    console.log(this.friend.friendId);
-    console.log(this.messages);
     return this.messages.
       filter(x => x.content.userId == this.friend.friendId || x.content.friendId == this.friend.friendId);
   }

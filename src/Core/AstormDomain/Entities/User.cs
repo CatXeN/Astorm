@@ -16,10 +16,5 @@ namespace AstormDomain.Entities
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public UserStatus UserStatus { get; set; }
-
-        [JsonIgnore]
-        public ICollection<UserMessage> OwnerMessages { get; } = new List<UserMessage>();
-        public ICollection<UserMessage> RecipientMessages { get; } = new List<UserMessage>();
-        public ICollection<ChannelMessage> UserMessages { get; } = new List<ChannelMessage>();
     }
 }

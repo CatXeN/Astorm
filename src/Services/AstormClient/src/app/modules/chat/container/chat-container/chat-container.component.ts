@@ -30,6 +30,7 @@ export class ChatContainerComponent implements OnInit {
 
     this.subject.subscribe({
         next : (data) => {
+          console.log(data);
           let content : MessageUser = JSON.parse(data.content);
 
           if(content.friendId == this.userId || content.userId == this.userId) {
@@ -46,7 +47,6 @@ export class ChatContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.store.dispatch(LoadFriend({userId: this.userId}));
-
     this.$friends = this.store.pipe(select(getFriends));
   }
 
@@ -57,8 +57,6 @@ export class ChatContainerComponent implements OnInit {
 
   selectedFriendOutput($event: Friend):void {
     this.selectedFriend = $event;
-    console.log(this.selectedFriend);
-
     this.getMessages(this.selectedFriend.friendId);
   }
 
@@ -71,9 +69,10 @@ export class ChatContainerComponent implements OnInit {
     this.store.pipe(select(getMessages)).subscribe(m => {
       this.messages = [];
       m.forEach(x => {
+
         let messageUser: MessageUser = {
           userId: x.ownerId,
-          friendId: x.recipentId,
+          friendId: x.recipientId,
           content: x.content
         }
         this.messages.push({name: x.owner.username, content: messageUser})

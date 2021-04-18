@@ -2,7 +2,7 @@ import { User } from "./user.model";
 
 export interface Message {
   ownerId: string;
-  recipentId: string;
+  recipientId: string;
   content: string;
   sendMessageDate: string;
 

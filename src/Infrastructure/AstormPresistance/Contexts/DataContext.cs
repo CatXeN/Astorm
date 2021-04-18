@@ -18,30 +18,6 @@ namespace AstormPresistance.Contexts
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<UserMessage>()
-                .HasOne(p => p.Recipient)
-                .WithMany(t => t.RecipientMessages)
-                .HasForeignKey(f => f.RecipientId)
-                .OnDelete(DeleteBehavior.Restrict);
-            
-            modelBuilder.Entity<UserMessage>()
-                .HasOne(p => p.Owner)
-                .WithMany(t => t.OwnerMessages)
-                .HasForeignKey(f => f.OwnerId)
-                .OnDelete(DeleteBehavior.Restrict); //TODO: look at this
-            
-            modelBuilder.Entity<ChannelMessage>()
-                .HasOne(p => p.Channel)
-                .WithMany(t => t.ChannelMessages)
-                .HasForeignKey(f => f.ChannelId)
-                .OnDelete(DeleteBehavior.Restrict);
-            
-            modelBuilder.Entity<ChannelMessage>()
-                .HasOne(p => p.Owner)
-                .WithMany(t => t.UserMessages)
-                .HasForeignKey(f => f.OwnerId)
-                .OnDelete(DeleteBehavior.Restrict);
-
             modelBuilder.Entity<FriendOfUser>()
                 .HasOne(p => p.Friend)
                 .WithOne()
