@@ -1,6 +1,7 @@
 ﻿using AstormPresistance.Contexts;
 using AstormPresistance.Repositories.Friend;
 using AstormPresistance.Repositories.Messeges;
+using AstormPresistance.Repositories.User;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -16,6 +17,7 @@ namespace AstormPresistance
 
             services.AddTransient<IFriendRepository, FriendRepository>();
             services.AddTransient<IMessageRepository, MessageRepository>();
+            services.AddTransient<IUserRepository, UserRepository>();
         }
     }
 }
