@@ -32,6 +32,30 @@ namespace AstormAPI.Controllers
             var friends =  await _repository.GetFriendsOfUser(userId);
             return Ok(friends);
         }
+        
+        [HttpPost("addRequest")]
+        public async Task<IActionResult> AddRequest(PendingRequestInformation pendingRequestInformation)
+        {
+            await _repository.AddRequest(pendingRequestInformation);
+            return Ok(); 
+        }
 
+        [HttpDelete("declineRequest/{userId}&{friendId}")]
+        public async Task<IActionResult> RemoveRequest(Guid userId, Guid friendId)
+        {
+            await _repository.RemoveRequest(userId, friendId);
+            return Ok();
+        }
+        
+        [HttpPost("acceptRequest")]
+        public async Task<IActionResult> AcceptRequest(FriendOfUserInformation friendOfUserInformation)
+        {
+            var successful = await _repository.RemoveRequest(friendOfUserInformation.UserId, friendOfUserInformation.FriendId);
+            if (!successful) 
+                return BadRequest();
+            await _repository.AddFriend(friendOfUserInformation);
+            
+            return Ok();
+        }
     }
 }

@@ -24,15 +24,17 @@ namespace AstormPresistance.Repositories.Friend
 
         public async Task AddFriend(FriendOfUserInformation friendOfUserInformation)
         {
-            List<FriendOfUser> friends = new List<FriendOfUser>
+            var friends = new List<FriendOfUser>
             {
                 new FriendOfUser()
                 {
-                  UserId = friendOfUserInformation.UserId,
-                  FriendId = friendOfUserInformation.FriendId
+                    Id = Guid.NewGuid(), 
+                    UserId = friendOfUserInformation.UserId,
+                    FriendId = friendOfUserInformation.FriendId
                 },
                 new FriendOfUser() 
                 {
+                    Id = Guid.NewGuid(),
                     UserId = friendOfUserInformation.FriendId,
                     FriendId = friendOfUserInformation.UserId
                 }
@@ -47,6 +49,27 @@ namespace AstormPresistance.Repositories.Friend
         {
             var friends = await _context.FriendsOfUsers.Include(x => x.Friend).Where(x => x.UserId == userId).ToListAsync();
             return _mapper.Map<IEnumerable<FriendOfUserInformation>>(friends);
+        }
+
+        public async Task<bool> RemoveRequest(Guid userId, Guid friendId)
+        {
+            var request = await _context.PendingRequests
+                .FirstOrDefaultAsync(x => x.UserId == userId && x.FriendId == friendId);
+            
+            if (request != null)
+                _context.Remove(request);
+
+            var deleted = await _context.SaveChangesAsync();
+            
+            return deleted > 0;
+        }
+
+        public async Task AddRequest(PendingRequestInformation pendingRequestInformation)
+        {
+            var request = _mapper.Map<PendingRequest>(pendingRequestInformation);
+            await _context.PendingRequests.AddAsync(request);
+
+            await _context.SaveChangesAsync();
         }
     }
 }
