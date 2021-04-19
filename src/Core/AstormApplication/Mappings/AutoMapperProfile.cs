@@ -13,6 +13,7 @@ namespace AstormApplication.Mappings
             CreateMap<Server, ServerInformation>().ReverseMap();
             CreateMap<User, UserInformation>().ReverseMap();
             CreateMap<UserMessage, UserMessageInformation>();
+            CreateMap<PendingRequest, PendingRequestInformation>();
         }
     }
 }

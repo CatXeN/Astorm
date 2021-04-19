@@ -12,6 +12,7 @@ namespace AstormPresistance.Contexts
         public DbSet<User> Users { get; set; }
         public DbSet<UserMessage> UsersMessages { get; set; }
         public DbSet<AssignUsersToServer> AssignUsersToServers { get; set; }
+        public DbSet<PendingRequest> PendingRequests { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -38,8 +39,6 @@ namespace AstormPresistance.Contexts
                 .WithMany(t => t.UserMessages)
                 .HasForeignKey(f => f.OwnerId)
                 .OnDelete(DeleteBehavior.Restrict);
-            
-            
         }
     }
 }

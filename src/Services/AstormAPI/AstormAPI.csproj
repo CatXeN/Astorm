@@ -27,4 +27,10 @@
       <ProjectReference Include="..\..\Infrastructure\AstormPresistance\AstormPresistance.csproj" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Reference Include="Infrastructure.Identity, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\..\..\AuthLibrary\Infrastructure.Identity\bin\Debug\net5.0\Infrastructure.Identity.dll</HintPath>
+      </Reference>
+    </ItemGroup>
+
 </Project>

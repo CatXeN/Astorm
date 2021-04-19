@@ -4,17 +4,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace AstormDomain.Entities
 {
-    public class AssignUsersToServer
+    public class PendingRequest
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
-        public Guid ServerId { get; set; }
+        public Guid FriendId { get; set; }
 
         [ForeignKey("UserId")]
-        public virtual User User { get; set; }
-        [ForeignKey("ServerId")]
-        public virtual Server Server { get; set; }
+        public virtual User User{ get; set; }
+        
+        [ForeignKey("FriendId")]
+        public virtual User Friend{ get; set; }
     }
-}    
+}
