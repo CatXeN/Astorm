@@ -14,6 +14,7 @@ namespace AstormApplication.Mappings
             CreateMap<User, UserInformation>().ReverseMap();
             CreateMap<UserMessage, UserMessageInformation>();
             CreateMap<FriendOfUser, FriendOfUserInformation>().ReverseMap();
+            CreateMap<PendingRequest, PendingRequestInformation>().ReverseMap();
         }
     }
 }
