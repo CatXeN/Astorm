@@ -23,6 +23,8 @@
     "@angular/platform-browser-dynamic": "~11.2.6",
     "@angular/router": "~11.2.6",
     "@auth0/angular-jwt": "^5.0.2",
+    "@ctrl/ngx-emoji-mart": "^5.1.0",
+    "@microlink/vanilla": "^5.5.5",
     "@ngrx/effects": "^11.1.0",
     "@ngrx/entity": "^11.1.0",
     "@ngrx/router-store": "^11.1.0",

@@ -71,5 +71,24 @@
       width: 90%;
       border-radius: 5px;
     }
+
+    &__keyboard {
+      user-select: none;
+      cursor: pointer;
+    }
+
+    &__send:hover {
+      color: rgb(36, 36, 255);
+    }
+
+    &__keyboard:hover {
+      color: rgb(212, 166, 13);
+    }
+  }
+
+  emoji-mart {
+    position: fixed;
+    bottom: 120px;
+    right: 450px;
   }
 }

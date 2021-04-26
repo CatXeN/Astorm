@@ -1,4 +1,4 @@
-<div class="container" *ngIf="friend">
+<div class="container" >
   <div class="header" *ngIf="friend">
     <p>{{friend.friend.username}}</p>
   </div>
@@ -9,7 +9,6 @@
         <p class="friend__overall--name">{{item.name}}</p>
         <p class="friend__overall--message">{{item.content.content}}</p>
       </div>
-
     </div>
   </div>
   <div class="input">
@@ -17,9 +16,12 @@
       <mat-label>{{"putText" | translate}}</mat-label>
       <input matInput placeholder="Placeholder" [(ngModel)]="text">
       </mat-form-field>
-    <button mat-icon-button (click)="sendMessage()">
+    <button class="input__send" mat-icon-button (click)="sendMessage()">
       <mat-icon>send</mat-icon>
-  </button>
+    </button>
+    <mat-icon class="input__keyboard" (click)="switchEmojiKeyboard()">
+      emoji_emotions
+    </mat-icon>
   </div>
-
+  <emoji-mart class="emoji-mart" darkMode="light" color="#ce65c5" (emojiSelect)="addEmoji($event)" *ngIf="showEmoji" title="Pick your emoji…"></emoji-mart>
 </div>
