@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace AstormAPI.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20210426210444_InitDatabase")]
+    [Migration("20210427173831_InitDatabase")]
     partial class InitDatabase
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,6 +92,9 @@ namespace AstormAPI.Migrations
                     b.Property<Guid>("ChannelId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<Guid?>("ChannelId1")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
@@ -104,6 +107,8 @@ namespace AstormAPI.Migrations
                     b.HasKey("Id");
 
                     b.HasIndex("ChannelId");
+
+                    b.HasIndex("ChannelId1");
 
                     b.HasIndex("OwnerId");
 
@@ -271,6 +276,10 @@ namespace AstormAPI.Migrations
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
+                    b.HasOne("AstormDomain.Entities.Channel", null)
+                        .WithMany("ChannelMessages")
+                        .HasForeignKey("ChannelId1");
+
                     b.HasOne("AstormDomain.Entities.User", "Owner")
                         .WithMany()
                         .HasForeignKey("OwnerId")
@@ -293,7 +302,7 @@ namespace AstormAPI.Migrations
                     b.HasOne("AstormDomain.Entities.User", "User")
                         .WithMany()
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Friend");
@@ -306,7 +315,7 @@ namespace AstormAPI.Migrations
                     b.HasOne("AstormDomain.Entities.User", "Friend")
                         .WithMany()
                         .HasForeignKey("FriendId")
-                        .OnDelete(DeleteBehavior.Restrict)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("AstormDomain.Entities.User", "User")
@@ -337,6 +346,11 @@ namespace AstormAPI.Migrations
                     b.Navigation("Owner");
 
                     b.Navigation("Recipient");
+                });
+
+            modelBuilder.Entity("AstormDomain.Entities.Channel", b =>
+                {
+                    b.Navigation("ChannelMessages");
                 });
 #pragma warning restore 612, 618
         }

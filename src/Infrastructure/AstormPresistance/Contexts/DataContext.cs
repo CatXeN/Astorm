@@ -21,32 +21,38 @@ namespace AstormPresistance.Contexts
         {
             modelBuilder.Entity<FriendOfUser>()
                 .HasOne(p => p.Friend)
-                .WithOne()
+                .WithMany()
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
             
             modelBuilder.Entity<PendingRequest>()
                 .HasOne(p => p.User)
-                .WithOne()
+                .WithMany()
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
             
             modelBuilder.Entity<UserMessage>()
                 .HasOne(p => p.Recipient)
-                .WithOne()
+                .WithMany()
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
             
             modelBuilder.Entity<UserMessage>()
                 .HasOne(p => p.Owner)
-                .WithOne()
+                .WithMany()
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
             
             modelBuilder.Entity<ChannelMessage>()
                 .HasOne(p => p.Channel)
-                .WithOne()
+                .WithMany()
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
             
             modelBuilder.Entity<ChannelMessage>()
                 .HasOne(p => p.Owner)
-                .WithOne()
+                .WithMany()
+                .IsRequired()
                 .OnDelete(DeleteBehavior.Restrict);
         }
     }

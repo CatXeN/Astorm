@@ -122,7 +122,7 @@ namespace AstormAPI.Migrations
                         column: x => x.UserId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -141,7 +141,7 @@ namespace AstormAPI.Migrations
                         column: x => x.FriendId,
                         principalTable: "Users",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_PendingRequests_Users_UserId",
                         column: x => x.UserId,
@@ -183,6 +183,7 @@ namespace AstormAPI.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ChannelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ChannelId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SendMessageDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OwnerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
@@ -193,6 +194,12 @@ namespace AstormAPI.Migrations
                     table.ForeignKey(
                         name: "FK_ChannelsMessages_Channels_ChannelId",
                         column: x => x.ChannelId,
+                        principalTable: "Channels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ChannelsMessages_Channels_ChannelId1",
+                        column: x => x.ChannelId1,
                         principalTable: "Channels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -228,6 +235,11 @@ namespace AstormAPI.Migrations
                 name: "IX_ChannelsMessages_ChannelId",
                 table: "ChannelsMessages",
                 column: "ChannelId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ChannelsMessages_ChannelId1",
+                table: "ChannelsMessages",
+                column: "ChannelId1");
 
             migrationBuilder.CreateIndex(
                 name: "IX_ChannelsMessages_OwnerId",
