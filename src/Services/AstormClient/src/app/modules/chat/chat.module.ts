@@ -5,7 +5,6 @@ import { ChatRoutingModule } from './chat-routing.module';
 import { FriendsCardPresenterComponent } from './presenter/friends-card-presenter/friends-card-presenter.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ChatCardPresenterComponent } from './presenter/chat-card-presenter/chat-card-presenter.component';
-import { MenuCardPresenterComponent } from './presenter/menu-card-presenter/menu-card-presenter.component';
 import { OperationCardPresenterComponent } from './presenter/operation-card-presenter/operation-card-presenter.component';
 
 
@@ -16,8 +15,7 @@ import { OperationCardPresenterComponent } from './presenter/operation-card-pres
     FriendsCardPresenterComponent,
     ChatCardPresenterComponent,
     ChatCardPresenterComponent,
-    MenuCardPresenterComponent,
-    OperationCardPresenterComponent
+    OperationCardPresenterComponent,
   ],
   imports: [
     CommonModule,

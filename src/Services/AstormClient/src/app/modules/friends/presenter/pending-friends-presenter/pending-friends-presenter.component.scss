@@ -1,0 +1,39 @@
+@import "/src/app/utilities/main";
+
+.container {
+  border-radius: 5px;
+  margin-left: 30px;
+  margin-top: 20px;
+  width: 92vw;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+
+  .header {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 0.3fr 0.7fr;
+    border-bottom: 1px #dbdbdb solid;
+
+    &__overall {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+
+
+      &--tittle {
+        font-size: 24px;
+        margin-left:3%;
+      }
+      &--icon {
+        font-size: 28px;
+      }
+    }
+
+    &__navi {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+    }
+  }
+}

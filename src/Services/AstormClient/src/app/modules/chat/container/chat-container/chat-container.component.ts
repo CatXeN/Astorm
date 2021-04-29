@@ -23,6 +23,7 @@ export class ChatContainerComponent implements OnInit {
   subject: any;
   messages: Array<{content: MessageUser, name: string}> = [];
   userId: string;
+  friendList: boolean = true;
 
   constructor(private store: Store<AppState>) {
     let token = localStorage.getItem('token');

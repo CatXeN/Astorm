@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="header">
+    <div class="header__overall">
+      <mat-icon class="header__overall--icon">person</mat-icon>
+      <p class="header__overall--tittle">Pending Friends</p>
+    </div>
+    <div class="header__navi">
+      <button mat-button routerLinkActive="activeroute" [routerLink]="['/chat/friends/list']">Friends List</button>
+      <button mat-button routerLinkActive="activeroute" [routerLink]="['/chat/friends/pending']">Pending Friends</button>
+      <button mat-button>Add Friend</button>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 <div class="container">
     <div class="header">
         <span class="header__chat-text">{{'chat' | translate}}</span>
-        <button mat-icon-button color="primary" class="header__add-btn">
+        <button mat-icon-button color="primary" class="header__add-btn" [routerLink]="['/chat/friends/list']">
             <mat-icon>add</mat-icon>
           </button>
     </div>
