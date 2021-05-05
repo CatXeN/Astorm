@@ -66,6 +66,18 @@ namespace AstormPresistance.Repositories.Friend
 
         public async Task AddRequest(PendingRequestInformation pendingRequestInformation)
         {
+            var pendingRequest = await _context.PendingRequests
+                .FirstOrDefaultAsync(x => (x.UserId == pendingRequestInformation.UserId
+                && x.FriendId == pendingRequestInformation.FriendId) || 
+                (x.UserId == pendingRequestInformation.FriendId && x.FriendId == pendingRequestInformation.UserId));
+
+            var friend = await _context.FriendsOfUsers
+                .FirstOrDefaultAsync(x => x.UserId == pendingRequestInformation.UserId
+                && x.FriendId == pendingRequestInformation.FriendId);
+
+            if (pendingRequest != null || friend != null)
+                throw new Exception("Such a request to friends already exists");
+
             var request = _mapper.Map<PendingRequest>(pendingRequestInformation);
             await _context.PendingRequests.AddAsync(request);
 

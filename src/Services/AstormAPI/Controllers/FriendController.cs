@@ -14,6 +14,7 @@ namespace AstormAPI.Controllers
     public class FriendController : ControllerBase
     {
         private readonly IFriendRepository _repository;
+
         public FriendController(IFriendRepository repository)
         {
             _repository = repository;
@@ -36,7 +37,15 @@ namespace AstormAPI.Controllers
         [HttpPost("addRequest")]
         public async Task<IActionResult> AddRequest(PendingRequestInformation pendingRequestInformation)
         {
-            await _repository.AddRequest(pendingRequestInformation);
+            try
+            {
+                await _repository.AddRequest(pendingRequestInformation);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
             return Ok(); 
         }
 
@@ -51,10 +60,11 @@ namespace AstormAPI.Controllers
         public async Task<IActionResult> AcceptRequest(FriendOfUserInformation friendOfUserInformation)
         {
             var successful = await _repository.RemoveRequest(friendOfUserInformation.UserId, friendOfUserInformation.FriendId);
+
             if (!successful) 
                 return BadRequest();
+
             await _repository.AddFriend(friendOfUserInformation);
-            
             return Ok();
         }
 
