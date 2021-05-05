@@ -57,5 +57,12 @@ namespace AstormAPI.Controllers
             
             return Ok();
         }
+
+        [HttpGet("getRequest/{userId}")]
+        public async Task<IActionResult> GetPendingRequest(Guid userId)
+        {
+            var result = await _repository.GetPendingRequestList(userId);
+            return Ok(result);
+        }
     }
 }

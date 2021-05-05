@@ -104,13 +104,11 @@ namespace AstormAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ChannelId")
-                        .IsUnique();
+                    b.HasIndex("ChannelId");
 
                     b.HasIndex("ChannelId1");
 
-                    b.HasIndex("OwnerId")
-                        .IsUnique();
+                    b.HasIndex("OwnerId");
 
                     b.ToTable("ChannelsMessages");
                 });
@@ -129,8 +127,7 @@ namespace AstormAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("FriendId")
-                        .IsUnique();
+                    b.HasIndex("FriendId");
 
                     b.HasIndex("UserId");
 
@@ -153,8 +150,7 @@ namespace AstormAPI.Migrations
 
                     b.HasIndex("FriendId");
 
-                    b.HasIndex("UserId")
-                        .IsUnique();
+                    b.HasIndex("UserId");
 
                     b.ToTable("PendingRequests");
                 });
@@ -222,11 +218,9 @@ namespace AstormAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OwnerId")
-                        .IsUnique();
+                    b.HasIndex("OwnerId");
 
-                    b.HasIndex("RecipientId")
-                        .IsUnique();
+                    b.HasIndex("RecipientId");
 
                     b.ToTable("UsersMessages");
                 });
@@ -275,8 +269,8 @@ namespace AstormAPI.Migrations
             modelBuilder.Entity("AstormDomain.Entities.ChannelMessage", b =>
                 {
                     b.HasOne("AstormDomain.Entities.Channel", "Channel")
-                        .WithOne()
-                        .HasForeignKey("AstormDomain.Entities.ChannelMessage", "ChannelId")
+                        .WithMany()
+                        .HasForeignKey("ChannelId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -285,8 +279,8 @@ namespace AstormAPI.Migrations
                         .HasForeignKey("ChannelId1");
 
                     b.HasOne("AstormDomain.Entities.User", "Owner")
-                        .WithOne()
-                        .HasForeignKey("AstormDomain.Entities.ChannelMessage", "OwnerId")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -298,8 +292,8 @@ namespace AstormAPI.Migrations
             modelBuilder.Entity("AstormDomain.Entities.FriendOfUser", b =>
                 {
                     b.HasOne("AstormDomain.Entities.User", "Friend")
-                        .WithOne()
-                        .HasForeignKey("AstormDomain.Entities.FriendOfUser", "FriendId")
+                        .WithMany()
+                        .HasForeignKey("FriendId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -323,8 +317,8 @@ namespace AstormAPI.Migrations
                         .IsRequired();
 
                     b.HasOne("AstormDomain.Entities.User", "User")
-                        .WithOne()
-                        .HasForeignKey("AstormDomain.Entities.PendingRequest", "UserId")
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -336,14 +330,14 @@ namespace AstormAPI.Migrations
             modelBuilder.Entity("AstormDomain.Entities.UserMessage", b =>
                 {
                     b.HasOne("AstormDomain.Entities.User", "Owner")
-                        .WithOne()
-                        .HasForeignKey("AstormDomain.Entities.UserMessage", "OwnerId")
+                        .WithMany()
+                        .HasForeignKey("OwnerId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("AstormDomain.Entities.User", "Recipient")
-                        .WithOne()
-                        .HasForeignKey("AstormDomain.Entities.UserMessage", "RecipientId")
+                        .WithMany()
+                        .HasForeignKey("RecipientId")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 

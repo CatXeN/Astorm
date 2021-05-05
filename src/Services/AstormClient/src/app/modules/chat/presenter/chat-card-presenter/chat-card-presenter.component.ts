@@ -1,10 +1,6 @@
 import { MessageUser } from './../../../../shared/models/messsageUser.model';
 import { Component, Input, OnInit, Output, EventEmitter } from '@angular/core';
-import { webSocket } from "rxjs/webSocket";
 import { Friend } from 'src/app/shared/models/friend.model';
-import { FriendEffects } from '../../store/effects/friend.effects';
-import { Message } from 'src/app/shared/models/message.model';
-import { GetMessage } from 'src/app/shared/models/getMessage.model';
 
 
 @Component({
@@ -13,9 +9,10 @@ import { GetMessage } from 'src/app/shared/models/getMessage.model';
   styleUrls: ['./chat-card-presenter.component.scss']
 })
 export class ChatCardPresenterComponent {
-  text: string;
+  text = "";
   messages: Array<{content: MessageUser, name: string}> = [];
   friend: Friend;
+  showEmoji: boolean = false;
 
   @Input() set selectedFriend(value: Friend) {
     if(value){
@@ -39,6 +36,7 @@ export class ChatCardPresenterComponent {
     };
 
     if (message.content !== "") {
+      console.log(message);
       this.sendMessageEmitter.emit(message);
       this.text = "";
     }
@@ -51,6 +49,16 @@ export class ChatCardPresenterComponent {
 
   getMessage() {
 
+  }
+
+  addEmoji($event) {
+    if($event && $event.emoji.native != undefined) {
+      this.text += $event.emoji.native;
+    }
+  }
+
+  switchEmojiKeyboard() {
+    this.showEmoji = !this.showEmoji;
   }
 }
 

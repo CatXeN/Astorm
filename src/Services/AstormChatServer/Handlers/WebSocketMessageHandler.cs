@@ -39,6 +39,8 @@ namespace AstormChatServer.Handlers
                 await _context.SaveChangesAsync();
             }
 
+            await UserChangeStatus();
+
             //Connections.AddSocket(socket, token);
 
             //var socketId = Connections.GetId(socket);
@@ -96,6 +98,13 @@ namespace AstormChatServer.Handlers
                 _context.Update(user);
                 await _context.SaveChangesAsync();
             }
+
+            await UserChangeStatus();
+        }
+
+        private async Task UserChangeStatus()
+        {
+            await SendMessageToAll("User update status");
         }
     }
 }

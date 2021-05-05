@@ -6,7 +6,7 @@ import { FriendsCardPresenterComponent } from './presenter/friends-card-presente
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ChatCardPresenterComponent } from './presenter/chat-card-presenter/chat-card-presenter.component';
 import { OperationCardPresenterComponent } from './presenter/operation-card-presenter/operation-card-presenter.component';
-
+import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 
 @NgModule({
@@ -20,7 +20,8 @@ import { OperationCardPresenterComponent } from './presenter/operation-card-pres
   imports: [
     CommonModule,
     ChatRoutingModule,
-    SharedModule
+    SharedModule,
+    PickerModule
   ]
 })
 export class ChatModule { }

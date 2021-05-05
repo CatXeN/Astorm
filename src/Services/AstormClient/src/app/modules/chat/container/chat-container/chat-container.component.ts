@@ -27,15 +27,19 @@ export class ChatContainerComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     let token = localStorage.getItem('token');
-    this.subject = webSocket({url:'ws://localhost:5000/ws?token=' + token});
+    this.subject = webSocket({url:'ws://localhost:5000/ws?token=' + token, deserializer: msg => msg});
 
     this.subject.subscribe({
-        next : (data) => {
-          console.log(data);
-          let content : MessageUser = JSON.parse(data.content);
+        next : (data) => {          
+          if (data.data === "User update status") {
+            this.updateFriendStatus();
+            return;
+          }
 
+          let json = JSON.parse(data.data);
+          let content : MessageUser = JSON.parse(json.content);
           if(content.friendId == this.userId || content.userId == this.userId) {
-            this.messages.push({name: data.name, content: content});
+            this.messages.push({name: json.name, content: content});
           }
         },
         error : console.log,
@@ -47,6 +51,11 @@ export class ChatContainerComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.dispatch(LoadFriend({userId: this.userId}));
+    this.$friends = this.store.pipe(select(getFriends));
+  }
+
+  updateFriendStatus(): void {
     this.store.dispatch(LoadFriend({userId: this.userId}));
     this.$friends = this.store.pipe(select(getFriends));
   }

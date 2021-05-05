@@ -71,5 +71,14 @@ namespace AstormPresistance.Repositories.Friend
 
             await _context.SaveChangesAsync();
         }
+
+        public async Task<IEnumerable<PendingRequestInformation>> GetPendingRequestList(Guid userId)
+        {
+            var result = await _context.PendingRequests
+                .Include(x => x.Friend)
+                .ThenInclude(x => x.Attributes)
+                .ToListAsync();
+            return _mapper.Map<IEnumerable<PendingRequestInformation>>(result);
+        }
     }
 }

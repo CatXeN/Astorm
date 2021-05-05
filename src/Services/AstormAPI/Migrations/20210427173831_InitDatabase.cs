@@ -28,7 +28,8 @@ namespace AstormAPI.Migrations
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     PasswordHash = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
-                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true)
+                    PasswordSalt = table.Column<byte[]>(type: "varbinary(max)", nullable: true),
+                    UserStatus = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -100,6 +101,56 @@ namespace AstormAPI.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "FriendsOfUsers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FriendId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FriendsOfUsers", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_FriendsOfUsers_Users_FriendId",
+                        column: x => x.FriendId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_FriendsOfUsers_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PendingRequests",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    FriendId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PendingRequests", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PendingRequests_Users_FriendId",
+                        column: x => x.FriendId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PendingRequests_Users_UserId",
+                        column: x => x.UserId,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "UsersMessages",
                 columns: table => new
                 {
@@ -132,6 +183,7 @@ namespace AstormAPI.Migrations
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     ChannelId = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    ChannelId1 = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     Content = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SendMessageDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     OwnerId = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
@@ -142,6 +194,12 @@ namespace AstormAPI.Migrations
                     table.ForeignKey(
                         name: "FK_ChannelsMessages_Channels_ChannelId",
                         column: x => x.ChannelId,
+                        principalTable: "Channels",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
+                        name: "FK_ChannelsMessages_Channels_ChannelId1",
+                        column: x => x.ChannelId1,
                         principalTable: "Channels",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -179,9 +237,34 @@ namespace AstormAPI.Migrations
                 column: "ChannelId");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ChannelsMessages_ChannelId1",
+                table: "ChannelsMessages",
+                column: "ChannelId1");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ChannelsMessages_OwnerId",
                 table: "ChannelsMessages",
                 column: "OwnerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FriendsOfUsers_FriendId",
+                table: "FriendsOfUsers",
+                column: "FriendId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_FriendsOfUsers_UserId",
+                table: "FriendsOfUsers",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PendingRequests_FriendId",
+                table: "PendingRequests",
+                column: "FriendId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PendingRequests_UserId",
+                table: "PendingRequests",
+                column: "UserId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_UsersMessages_OwnerId",
@@ -204,6 +287,12 @@ namespace AstormAPI.Migrations
 
             migrationBuilder.DropTable(
                 name: "ChannelsMessages");
+
+            migrationBuilder.DropTable(
+                name: "FriendsOfUsers");
+
+            migrationBuilder.DropTable(
+                name: "PendingRequests");
 
             migrationBuilder.DropTable(
                 name: "UsersMessages");
