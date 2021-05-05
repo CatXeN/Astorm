@@ -2,7 +2,6 @@ using AstormApplication;
 using AstormChatServer.Handlers;
 using AstormChatServer.SocketsManager;
 using AstormPresistance.Contexts;
-using AstormPresistance.Repositories.Messeges;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
