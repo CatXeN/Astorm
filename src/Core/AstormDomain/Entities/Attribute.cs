@@ -16,8 +16,5 @@ namespace AstormDomain.Entities
         public string Key { get; set; }
         public string Value { get; set; }
         public Guid UserId { get; set; }
-
-        [ForeignKey("UserId")]
-        public virtual User User { get; set; } 
     }
 }
