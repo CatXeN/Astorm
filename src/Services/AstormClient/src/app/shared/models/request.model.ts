@@ -1,4 +1,4 @@
-export interface Request {
+export interface RequestModel {
   id: string,
   userId: string,
   friendId: string

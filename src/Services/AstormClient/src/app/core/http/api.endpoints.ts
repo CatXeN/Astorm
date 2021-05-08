@@ -19,6 +19,7 @@ export const ApiEndpoints = {
   request: {
     createRequest: `${environment.apiUrl}/api​/Friend​/addRequest`,
     deleteRequest: `${environment.apiUrl}/api/Friend/declineRequest/{0}&{1}`,
-    acceptRequest: `${environment.apiUrl}​/api​/Friend​/acceptRequest`
+    acceptRequest: `${environment.apiUrl}​/api​/Friend​/acceptRequest`,
+    RequestList: `${environment.apiUrl}​/api​/Friend​/getRequest​/{0}`
   }
 }

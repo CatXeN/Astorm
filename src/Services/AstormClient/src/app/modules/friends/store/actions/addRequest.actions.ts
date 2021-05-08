@@ -1,8 +1,9 @@
 import { createAction, props } from "@ngrx/store";
+import { RequestModel } from "src/app/shared/models/request.model";
 
 export const addResquestLoad = createAction (
   '[Request] Load addRequest',
-  props<{request: Request}>()
+  props<{request: RequestModel}>()
 )
 
 export const addRequestSuccesful = createAction (
