@@ -18,6 +18,15 @@ namespace AstormPresistance.Repositories.User
             _context = context;
         }
 
+        public async Task ChangeImageUrl(Guid userId, string url)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+            user.ImageUrl = url;
+
+            _context.Update(user);
+            await _context.SaveChangesAsync();
+        }
+
         public async Task ChangeStatus(int status, Guid userId)
         {
             var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);

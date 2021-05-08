@@ -15,6 +15,8 @@ namespace AstormDomain.Entities
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public UserStatus UserStatus { get; set; }
+        public string Description { get; set; }
+        public string ImageUrl { get; set; }
 
         public virtual ICollection<Attribute> Attributes { get; set; }
     }
