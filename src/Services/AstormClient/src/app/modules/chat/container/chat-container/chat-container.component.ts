@@ -10,6 +10,7 @@ import { LoadFriend } from '../../store/actions/friend.actions';
 import { GetMessage } from 'src/app/shared/models/getMessage.model';
 import { LoadMessage } from '../../store/actions/message.action';
 import { getMessages } from '../../store/selectors/message.selector';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-chat-container',
@@ -26,7 +27,7 @@ export class ChatContainerComponent implements OnInit {
 
   constructor(private store: Store<AppState>) {
     let token = localStorage.getItem('token');
-    this.subject = webSocket({url:'ws://localhost:5000/ws?token=' + token, deserializer: msg => msg});
+    this.subject = webSocket({url: environment.webSocket + token, deserializer: msg => msg});
 
     this.subject.subscribe({
         next : (data) => {          
