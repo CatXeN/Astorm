@@ -5,35 +5,42 @@ import { LoadFriend } from 'src/app/modules/chat/store/actions/friend.actions';
 import { getFriends } from 'src/app/modules/chat/store/selectors';
 import { Friend } from 'src/app/shared/models/friend.model';
 import { AppState } from 'src/app/shared/state/app.interfaces';
-import { GetRequestListLoad } from '../../store/actions/requestList.actions';
-
+import { RequestListLoad } from '../../store/actions/request.actions';
+import { RequestSharedService } from '../../services/request-shared.service';
+import {requestList} from '../../store/selectors/request.selector';
+import {RequestModel} from '../../../../shared/models/request.model';
 
 @Component({
   selector: 'app-friends-container',
   templateUrl: './friends-container.component.html',
-  styleUrls: ['./friends-container.component.scss']
+  styleUrls: ['./friends-container.component.scss'],
 })
 export class FriendsContainerComponent implements OnInit {
-
   userId: string;
-  $friendList = new Subject<Friend[]>();
-  friends: Friend[]
 
-  constructor(private store: Store<AppState>) {
+  constructor(
+    private store: Store<AppState>,
+    private requestSharedService: RequestSharedService
+  ) {
     this.userId = localStorage.getItem('id');
   }
 
   ngOnInit(): void {
     this.getFriendList();
+    this.getPendingList();
   }
 
-  getFriendList() {
-    this.store.dispatch(LoadFriend({userId: this.userId}));
-    this.$friendList == this.store.pipe(select(getFriends));
-    this.$friendList.next(this.friends);
+  getFriendList(): void {
+    this.store.dispatch(LoadFriend({ userId: this.userId }));
+    this.store.pipe(select(getFriends)).subscribe((x) => {
+      this.requestSharedService.shareFriends(x);
+    });
   }
 
-  getPendingList() {
-    this.store.dispatch(GetRequestListLoad({userId: this.userId}))
+  getPendingList(): void {
+    this.store.dispatch(RequestListLoad({ userId: this.userId }));
+    this.store.pipe(select(requestList)).subscribe((x: RequestModel[]) => {
+      this.requestSharedService.shareRequests(x);
+    })
   }
 }

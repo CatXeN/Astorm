@@ -5,9 +5,40 @@
       <p class="header__overall--tittle">Pending Friends</p>
     </div>
     <div class="header__navi">
-      <button mat-button routerLinkActive="activeroute" [routerLink]="['/chat/friends/list']">Friends List</button>
-      <button mat-button routerLinkActive="activeroute" [routerLink]="['/chat/friends/pending']">Pending Friends</button>
+      <button
+        mat-button
+        routerLinkActive="activeroute"
+        [routerLink]="['/chat/friends/list']"
+      >
+        Friends List
+      </button>
+      <button
+        mat-button
+        routerLinkActive="activeroute"
+        [routerLink]="['/chat/friends/pending']"
+      >
+        Pending Friends
+      </button>
       <button mat-button>Add Friend</button>
+    </div>
+  </div>
+  <div class="pendings" *ngFor="let item of request">
+    <div class="request">
+      <div class="request__info">
+        <img
+          class="profile"
+          src="https://newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg"
+        />
+        <p class="request__info--name">{{ item.friend.username }}</p>
+      </div>
+      <div class="request__options">
+        <button mat-mini-fab>
+          <mat-icon>home</mat-icon>
+        </button>
+        <button mat-mini-fab>
+          <mat-icon>home</mat-icon>
+        </button>
+      </div>
     </div>
   </div>
 </div>
