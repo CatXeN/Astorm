@@ -91,5 +91,15 @@ namespace AstormPresistance.Repositories.Friend
                 .ToListAsync();
             return _mapper.Map<IEnumerable<PendingRequestInformation>>(result);
         }
+
+        public async Task<Guid> UserExist(string addRequestFriendInfromation)
+        {
+            var result = await _context.Users.FirstOrDefaultAsync(x => x.Username == addRequestFriendInfromation);
+
+            if (result == null)
+                return Guid.Empty;
+            else
+                return result.Id;
+        }
     }
 }

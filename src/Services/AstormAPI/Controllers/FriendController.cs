@@ -32,8 +32,19 @@ namespace AstormAPI.Controllers
         }
         
         [HttpPost("addRequest")]
-        public async Task<IActionResult> AddRequest(PendingRequestInformation pendingRequestInformation)
+        public async Task<IActionResult> AddRequest(AddRequestFriendInfromation addRequestFriendInfromation)
         {
+            var friend = await _repository.UserExist(addRequestFriendInfromation.UserToAdd);
+
+            if (friend == Guid.Empty)
+                return BadRequest("User not exist");
+
+            var pendingRequestInformation = new PendingRequestInformation()
+            {
+                FriendId = friend,
+                UserId = addRequestFriendInfromation.UserId
+            };
+
             try
             {
                 await _repository.AddRequest(pendingRequestInformation);

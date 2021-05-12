@@ -12,5 +12,6 @@ namespace AstormPresistance.Repositories.Friend
         Task<bool> RemoveRequest(Guid userId, Guid friendId);
         Task AddRequest(PendingRequestInformation pendingRequestInformation);
         Task<IEnumerable<PendingRequestInformation>> GetPendingRequestList(Guid userId);
+        Task<Guid> UserExist(string addRequestFriendInfromation);
     }
 }
