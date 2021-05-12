@@ -1,23 +1,32 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { Friend } from 'src/app/shared/models/friend.model';
-import {RequestModel} from '../../../shared/models/request.model';
+import { RequestModel } from '../../../shared/models/request.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class RequestSharedService {
-  friends = new Subject<Friend[]>();
-  requests = new Subject<RequestModel[]>();
+  //empty
+  emptyFriend: Friend[] = [];
+  emptyRequest: RequestModel[] = [];
+//Behaviour Subjects
+  friends = new BehaviorSubject(this.emptyFriend);
+  requests = new BehaviorSubject(this.emptyRequest);
 
-  requestList$ = this.requests.asObservable();
-  friendList$ = this.friends.asObservable();
+  getFriends() {
+    return this.friends.asObservable();
+  }
+
+  getPendingRequest() {
+    return this.requests.asObservable();
+  }
 
   shareFriends(friend: Friend[]) {
     this.friends.next(friend);
   }
 
   shareRequests(request: RequestModel[]) {
-    this.requests.next((request));
+    this.requests.next(request);
   }
 }

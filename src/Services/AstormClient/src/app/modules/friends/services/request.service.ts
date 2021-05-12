@@ -21,7 +21,7 @@ export class RequestService {
   return this.http.delete(ApiEndpoints.request.deleteRequest.format(String(userId), String(friendId)))
   }
 
-  acceptRequest(acceptRequest: AcceptRequest) {
+  acceptRequest(acceptRequest: RequestModel) {
      return this.http.post(ApiEndpoints.request.acceptRequest, acceptRequest);
   }
 

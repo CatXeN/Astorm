@@ -7,8 +7,8 @@ import { Friend } from 'src/app/shared/models/friend.model';
 import { AppState } from 'src/app/shared/state/app.interfaces';
 import { RequestListLoad } from '../../store/actions/request.actions';
 import { RequestSharedService } from '../../services/request-shared.service';
-import {requestList} from '../../store/selectors/request.selector';
-import {RequestModel} from '../../../../shared/models/request.model';
+import { requestList } from '../../store/selectors/request.selector';
+import { RequestModel } from '../../../../shared/models/request.model';
 
 @Component({
   selector: 'app-friends-container',
@@ -41,6 +41,6 @@ export class FriendsContainerComponent implements OnInit {
     this.store.dispatch(RequestListLoad({ userId: this.userId }));
     this.store.pipe(select(requestList)).subscribe((x: RequestModel[]) => {
       this.requestSharedService.shareRequests(x);
-    })
+    });
   }
 }

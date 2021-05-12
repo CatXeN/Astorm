@@ -25,8 +25,8 @@ export const requestReducer = createReducer(
   on(request.AcceptRequestLoad,(state) => {
     return {...state}
 }),
-    on(request.AcceptRequestSuccesful,(state) => {
-    return {...state}
+    on(request.AcceptRequestSuccesful,(state, {request}) => {
+    return adapter.removeOne(request.id, state);
 }),
     on(request.AcceptRequestFail,(state) => {
     return {...state}

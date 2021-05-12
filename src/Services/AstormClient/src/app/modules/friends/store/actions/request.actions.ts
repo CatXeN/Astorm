@@ -22,7 +22,8 @@ export const AcceptRequestLoad = createAction(
   props<{request: RequestModel}>()
 );
 export const AcceptRequestSuccesful = createAction(
-  '[Request] AcceptRequest Succesfully'
+  '[Request] AcceptRequest Succesfully',
+  props<{request: RequestModel}>()
 );
 export const AcceptRequestFail = createAction(
   '[Request] AcceptRequest Fail',
