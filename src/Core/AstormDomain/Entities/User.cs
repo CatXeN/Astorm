@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text.Json.Serialization;
 
 namespace AstormDomain.Entities
 {
@@ -16,6 +15,8 @@ namespace AstormDomain.Entities
         public byte[] PasswordHash { get; set; }
         public byte[] PasswordSalt { get; set; }
         public UserStatus UserStatus { get; set; }
+        public string Description { get; set; }
+        public string ImageUrl { get; set; }
 
         public virtual ICollection<Attribute> Attributes { get; set; }
     }

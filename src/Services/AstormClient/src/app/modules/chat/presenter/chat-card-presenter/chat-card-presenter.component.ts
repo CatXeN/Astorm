@@ -36,7 +36,6 @@ export class ChatCardPresenterComponent {
     };
 
     if (message.content !== "") {
-      console.log(message);
       this.sendMessageEmitter.emit(message);
       this.text = "";
     }

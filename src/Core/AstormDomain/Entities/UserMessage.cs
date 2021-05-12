@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using AstormDomain.Common;
 
 namespace AstormDomain.Entities
 {

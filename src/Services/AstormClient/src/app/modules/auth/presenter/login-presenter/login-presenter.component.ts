@@ -20,7 +20,6 @@ export class LoginPresenterComponent {
   constructor(private auth: AuthService, private route: Router) { }
 
   loginto() {
-    console.log(this.loginForm.value);
     this.auth.login(this.loginForm.value).subscribe(x => {
       this.route.navigate(['/chat']);
     });

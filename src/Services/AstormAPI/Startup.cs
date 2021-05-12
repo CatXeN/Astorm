@@ -1,5 +1,6 @@
 using AstormAPI.Extensions;
 using AstormApplication;
+using AstormApplication.Options;
 using AstormPresistance;
 using Infrastructure.Identity;
 using Microsoft.AspNetCore.Builder;
@@ -27,8 +28,10 @@ namespace AstormAPI
             services.AddSwaggerExtension();
             services.AddApplicationLayer();
             services.AddPersistenceInfrastructure(Configuration);
-
             services.AddAuthenticationLibrary(Configuration);
+            services.AddServiceExtension();
+
+            services.Configure<FTPConfig>(options => Configuration.GetSection("FTP").Bind(options));
 
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -46,15 +49,17 @@ namespace AstormAPI
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AstormAPI v1"));
-            }
+            } 
 
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            app.UseAuthentication();
 
             app.UseCors("MyPolicy");
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }

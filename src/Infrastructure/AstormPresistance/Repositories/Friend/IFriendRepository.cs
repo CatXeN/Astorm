@@ -1,9 +1,6 @@
 ﻿using AstormApplication.DTOs;
-using AstormDomain.Entities;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AstormPresistance.Repositories.Friend
@@ -15,5 +12,6 @@ namespace AstormPresistance.Repositories.Friend
         Task<bool> RemoveRequest(Guid userId, Guid friendId);
         Task AddRequest(PendingRequestInformation pendingRequestInformation);
         Task<IEnumerable<PendingRequestInformation>> GetPendingRequestList(Guid userId);
+        Task<Guid> UserExist(string addRequestFriendInfromation);
     }
 }

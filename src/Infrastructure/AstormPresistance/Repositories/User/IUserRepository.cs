@@ -9,5 +9,6 @@ namespace AstormPresistance.Repositories.User
     public interface IUserRepository
     {
         Task ChangeStatus(int status, Guid userId);
+        Task ChangeImageUrl(Guid userId, string url);
     }
 }

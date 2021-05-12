@@ -1,10 +1,7 @@
 ﻿using AstormApplication.DTOs;
 using AstormPresistance.Repositories.Friend;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AstormAPI.Controllers
@@ -14,6 +11,7 @@ namespace AstormAPI.Controllers
     public class FriendController : ControllerBase
     {
         private readonly IFriendRepository _repository;
+
         public FriendController(IFriendRepository repository)
         {
             _repository = repository;
@@ -34,9 +32,28 @@ namespace AstormAPI.Controllers
         }
         
         [HttpPost("addRequest")]
-        public async Task<IActionResult> AddRequest(PendingRequestInformation pendingRequestInformation)
+        public async Task<IActionResult> AddRequest(AddRequestFriendInfromation addRequestFriendInfromation)
         {
-            await _repository.AddRequest(pendingRequestInformation);
+            var friend = await _repository.UserExist(addRequestFriendInfromation.UserToAdd);
+
+            if (friend == Guid.Empty)
+                return BadRequest("User not exist");
+
+            var pendingRequestInformation = new PendingRequestInformation()
+            {
+                FriendId = friend,
+                UserId = addRequestFriendInfromation.UserId
+            };
+
+            try
+            {
+                await _repository.AddRequest(pendingRequestInformation);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+            
             return Ok(); 
         }
 
@@ -51,10 +68,11 @@ namespace AstormAPI.Controllers
         public async Task<IActionResult> AcceptRequest(FriendOfUserInformation friendOfUserInformation)
         {
             var successful = await _repository.RemoveRequest(friendOfUserInformation.UserId, friendOfUserInformation.FriendId);
+
             if (!successful) 
                 return BadRequest();
+
             await _repository.AddFriend(friendOfUserInformation);
-            
             return Ok();
         }
 
