@@ -4,6 +4,7 @@
     <TargetFramework>net5.0</TargetFramework>
     <RootNamespace>AstormChatServer</RootNamespace>
     <AssemblyName>AstormChatServer</AssemblyName>
+    <UserSecretsId>8d1ace71-440a-4aff-9a25-2f15305c1407</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>

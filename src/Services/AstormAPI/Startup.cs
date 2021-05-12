@@ -49,7 +49,7 @@ namespace AstormAPI
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "AstormAPI v1"));
-            }
+            } 
 
             app.UseHttpsRedirection();
 
@@ -57,9 +57,9 @@ namespace AstormAPI
 
             app.UseAuthentication();
 
-            app.UseAuthorization();
-
             app.UseCors("MyPolicy");
+
+            app.UseAuthorization();
 
             app.UseEndpoints(endpoints => { endpoints.MapControllers(); });
         }
