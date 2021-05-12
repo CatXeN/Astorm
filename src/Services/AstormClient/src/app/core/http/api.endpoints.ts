@@ -15,5 +15,11 @@ export const ApiEndpoints = {
   },
   user: {
     changeStatus: `${environment.apiUrl}/api/User/changeStatus/{0}&{1}`
+  },
+  request: {
+    createRequest: `${environment.apiUrl}/api/Friend/addRequest`,
+    deleteRequest: `${environment.apiUrl}/api/Friend/declineRequest/{0}&{1}`,
+    acceptRequest: `${environment.apiUrl}/api/Friend/acceptRequest`,
+    requestList: `${environment.apiUrl}/api/Friend/getRequest/{0}`
   }
 }

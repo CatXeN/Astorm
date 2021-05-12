@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="header">
+    <div class="header__overall">
+      <mat-icon class="header__overall--icon">person</mat-icon>
+      <p class="header__overall--tittle">Friends</p>
+    </div>
+    <div class="header__navi">
+      <button mat-button routerLinkActive="activeroute" [routerLink]="['/chat/friends/list']">Friends List</button>
+      <button mat-button routerLinkActive="activeroute" [routerLink]="['/chat/friends/pending']">Pending Friends</button>
+      <button mat-button>Add Friend</button>
+    </div>
+  </div>
+  <div class="friend">
+    <div class="friend__list" *ngFor="let item of friends">
+      <img class="profile"
+        src="https://newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg"
+      >
+      <p class="friend__list--name">{{item.friend.username}}</p>
+
+      <div class="friend__options">
+        <mat-icon class="friend__options--call">call</mat-icon>
+        <mat-icon class="friend__options--chat">chat</mat-icon>
+      </div>
+    </div>
+  </div>
+</div>

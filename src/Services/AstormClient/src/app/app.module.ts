@@ -12,6 +12,7 @@ import {TranslateModule, TranslateLoader} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { StateModule } from './shared/state/state.module';
+import { FriendsModule } from './modules/friends/friends.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -21,7 +22,7 @@ export function HttpLoaderFactory(http: HttpClient) {
   declarations: [
     AppComponent,
     MainLayoutComponent,
-    ToolbarComponent
+    ToolbarComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,7 +37,8 @@ export function HttpLoaderFactory(http: HttpClient) {
             useFactory: HttpLoaderFactory,
             deps: [HttpClient]
         }}),
-    StateModule
+    StateModule,
+    FriendsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
