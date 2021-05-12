@@ -9,7 +9,6 @@
   display: flex;
   flex-direction: column;
 
-
   .header {
     width: 100%;
     display: grid;
@@ -21,10 +20,9 @@
       display: flex;
       flex-direction: row;
 
-
       &--tittle {
         font-size: 24px;
-        margin-left:3%;
+        margin-left: 3%;
       }
       &--icon {
         font-size: 28px;
@@ -38,11 +36,11 @@
     }
   }
 
-  .friends-list {
+  .friend {
     width: 100%;
     padding: 15px;
 
-    .friend {
+    &__list {
       margin-bottom: 10px;
       display: flex;
       flex-direction: row;
@@ -52,31 +50,31 @@
       box-shadow: 0px 5px 10px 3px rgba(0, 0, 0, 0.25);
       border-radius: 15px;
 
-      &__name {
+      &--name {
         font-size: 18px;
       }
+    }
 
-      &__options {
-        width: 100%;
+    &__options {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+
+      &--call {
+        width: 35px;
+        height: 35px;
         display: flex;
-        justify-content: flex-end;
+        justify-content: center;
+        align-items: center;
+        border-radius: 10px;
+        color: #00af00;
+        background-color: #00af0031;
+      }
 
-        &--call {
-          width: 35px;
-          height: 35px;
-          display: flex;
-          justify-content: center;
-          align-items: center;
-          border-radius: 10px;
-          color: #00af00;
-          background-color: #00af0031;
-        }
-
-        &--chat {
-          color: #3559bd;
-          font-size: 35px;
-          margin-left: 5px;
-        }
+      &--chat {
+        color: #3559bd;
+        font-size: 35px;
+        margin-left: 5px;
       }
     }
   }

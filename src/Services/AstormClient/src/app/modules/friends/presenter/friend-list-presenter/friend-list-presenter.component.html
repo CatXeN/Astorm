@@ -10,12 +10,12 @@
       <button mat-button>Add Friend</button>
     </div>
   </div>
-  <div class="friends-list">
-    <div class="friend" *ngFor="let item of friends">
+  <div class="friend">
+    <div class="friend__list" *ngFor="let item of friends">
       <img class="profile"
         src="https://newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg"
       >
-      <p class="friend__name">{{item.friend.username}}</p>
+      <p class="friend__list--name">{{item.friend.username}}</p>
 
       <div class="friend__options">
         <mat-icon class="friend__options--call">call</mat-icon>

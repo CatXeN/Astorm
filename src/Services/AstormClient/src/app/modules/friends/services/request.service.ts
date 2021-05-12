@@ -26,6 +26,6 @@ export class RequestService {
   }
 
   getRequestList(userId: string) : Observable<RequestModel[]>{
-   return this.http.get<RequestModel[]>(ApiEndpoints.request.RequestList.format(String(userId)));
+   return this.http.get<RequestModel[]>(ApiEndpoints.request.requestList.format(String(userId)));
   }
 }

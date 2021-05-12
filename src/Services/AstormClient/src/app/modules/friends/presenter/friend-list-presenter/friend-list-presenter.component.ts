@@ -21,13 +21,13 @@ export class FriendListPresenterComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.requestSharedService.getFriends().subscribe((x) => {
+    this.subscription = this.requestSharedService.getFriends().subscribe((x) => {
       this.friends = x;
     });
     this.userId = localStorage.getItem('id');
   }
 
   ngOnDestroy(): void {
-    // this.subscription.unsubscribe();
+     this.subscription.unsubscribe();
   }
 }

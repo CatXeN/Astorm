@@ -20,11 +20,11 @@ export class PendingFriendsPresenterComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.requestSharedService.getPendingRequest().subscribe(x => {this.request = x})
+  this.subscription = this.requestSharedService.getPendingRequest().subscribe(x => {this.request = x})
   }
 
   ngOnDestroy(): void {
-    // this.subscription.unsubscribe()
+    this.subscription.unsubscribe()
   }
 
   acceptRequest(request: RequestModel){
