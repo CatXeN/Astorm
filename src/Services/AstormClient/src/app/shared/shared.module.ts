@@ -3,22 +3,27 @@ import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MenuCardPresenterComponent } from './menu-card-presenter/menu-card-presenter.component';
+import { RouterModule } from '@angular/router';
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [MenuCardPresenterComponent],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    RouterModule
+
   ],
   exports: [
     MaterialModule,
     TranslateModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MenuCardPresenterComponent
   ]
 })
 export class SharedModule { }
