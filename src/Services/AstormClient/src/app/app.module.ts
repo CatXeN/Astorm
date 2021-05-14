@@ -13,6 +13,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { StateModule } from './shared/state/state.module';
 import { FriendsModule } from './modules/friends/friends.module';
+import { MenuCardPresenterComponent } from './core/menu-card-presenter/menu-card-presenter.component';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
@@ -23,6 +24,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     MainLayoutComponent,
     ToolbarComponent,
+    MenuCardPresenterComponent
   ],
   imports: [
     BrowserModule,

@@ -1,11 +1,11 @@
 <div class="container">
     <div class="header">
-        <span class="header__chat-text">{{'chat' | translate}}</span>
-        <button mat-icon-button color="primary" class="header__add-btn" [routerLink]="['/chat/friends/list']">
+        <span class="header__chat">{{'chat' | translate}}</span>
+        <button mat-icon-button color="primary" class="header__add" [routerLink]="['/chat/friends/list']">
             <mat-icon>add</mat-icon>
           </button>
     </div>
-    <div class="friend-container">
+    <div class="friends">
         <div class="friend" *ngFor="let item of friends" (click)="selectFriend(item)">
             <img
             src="https://newdoorfiji.com/wp-content/uploads/2018/03/profile-img-1.jpg"
