@@ -4,7 +4,7 @@
 }
 
 .sidenav-content {
-  min-height: 100vh;
+  min-height: 94vh;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -33,4 +33,14 @@
 
 ::ng-deep .sidenav {
   overflow-y: unset !important;
+}
+
+@media (max-width: 650px) {
+  .sidenav {
+    width: 15%;
+
+    mat-nav-list {
+      padding: 0px 0px  !important;
+    }
+  }
 }

@@ -79,3 +79,37 @@
     }
   }
 }
+
+
+@media (max-width: 650px) {
+  .container {
+    .friend {
+      &__list {
+        width: 75%;
+        
+        &--name {
+          padding-left: 55px;
+        }
+      }
+
+      &__options {
+        &--chat {
+          padding-right: 10px;
+        }
+      }
+    }
+
+    .header__overall {
+      display: none;
+    }
+
+    .header__navi {
+      width: 75%;
+
+      button {
+        font-size: 12px;
+        margin-right: 10px;
+      }
+    }
+  }
+}
