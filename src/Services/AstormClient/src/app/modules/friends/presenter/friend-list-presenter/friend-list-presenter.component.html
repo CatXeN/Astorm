@@ -19,7 +19,7 @@
 
       <div class="friend__options">
         <mat-icon class="friend__options--call">call</mat-icon>
-        <mat-icon class="friend__options--chat">chat</mat-icon>
+        <mat-icon class="friend__options--chat" [routerLink]="['/chat', item.friend.id]">chat</mat-icon>
       </div>
     </div>
   </div>

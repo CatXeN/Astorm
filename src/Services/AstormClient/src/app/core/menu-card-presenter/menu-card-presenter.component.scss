@@ -36,6 +36,10 @@
 }
 
 @media (max-width: 650px) {
+  #chat-icon {
+    display: none;
+  }
+
   .sidenav {
     width: 15%;
 

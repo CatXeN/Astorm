@@ -6,6 +6,10 @@ const routes: Routes = [
   {
     path: '',
     component: ChatContainerComponent,
+  },
+  {
+    path: ':id',
+    component: ChatContainerComponent,
   }
 ];
 

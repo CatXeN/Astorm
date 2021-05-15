@@ -93,3 +93,9 @@
     right: 450px;
   }
 }
+
+@media (max-width: 650px) {
+  .container {
+    width: 90%;
+  }
+}

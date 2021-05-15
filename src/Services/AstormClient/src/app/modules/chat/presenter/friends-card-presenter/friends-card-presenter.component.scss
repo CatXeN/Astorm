@@ -81,6 +81,8 @@
 
 @media(max-width: 650px) {
     .container {
+        display: none;
+        
         .friends {
             .friend {
                 &__image {

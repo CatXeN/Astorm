@@ -21,7 +21,7 @@ export class LoginPresenterComponent {
 
   loginto() {
     this.auth.login(this.loginForm.value).subscribe(x => {
-      this.route.navigate(['/chat']);
+      this.route.navigate(['/friends/list']);
     });
   }
 
