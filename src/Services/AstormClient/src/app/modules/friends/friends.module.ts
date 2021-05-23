@@ -5,11 +5,12 @@ import { FriendListPresenterComponent } from './presenter/friend-list-presenter/
 import { PendingFriendsPresenterComponent } from './presenter/pending-friends-presenter/pending-friends-presenter.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { FriendsRoutingModule } from './friends-routing.module';
+import { AddRequestPresenterComponent } from './presenter/add-request-presenter/add-request-presenter.component';
 
 
 
 @NgModule({
-  declarations: [FriendsContainerComponent, FriendListPresenterComponent, PendingFriendsPresenterComponent],
+  declarations: [FriendsContainerComponent, FriendListPresenterComponent, PendingFriendsPresenterComponent, AddRequestPresenterComponent],
   imports: [
     CommonModule,
     SharedModule,

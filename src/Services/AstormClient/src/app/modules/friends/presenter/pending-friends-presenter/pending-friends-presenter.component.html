@@ -18,7 +18,7 @@
       >
         Pending Friends
       </button>
-      <button mat-button>Add Friend</button>
+      <button mat-button (click)="openAddFriend()">Add Friend</button>
     </div>
   </div>
   <div class="pendings" *ngFor="let item of request">
@@ -34,7 +34,7 @@
         <button mat-mini-fab (click)="acceptRequest(item)">
           <mat-icon>thumb_up</mat-icon>
         </button>
-        <button mat-mini-fab>
+        <button mat-mini-fab (click)="declineRequest(item)">
           <mat-icon>thumb_down</mat-icon>
         </button>
       </div>

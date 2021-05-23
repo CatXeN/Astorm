@@ -1,10 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiEndpoints } from 'src/app/core/http/api.endpoints';
-import { AcceptRequest } from 'src/app/shared/models/acceptRequest.model';
-import { Friend } from 'src/app/shared/models/friend.model';
 import { RequestModel } from 'src/app/shared/models/request.model';
+import {addRequestModel} from '../../../shared/models/addRequest.model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,12 +12,22 @@ export class RequestService {
 
   constructor(private http: HttpClient) { }
 
-  addRequest(requestModel: Request) {
-   return this.http.post(ApiEndpoints.request.createRequest, requestModel);
+  addRequest(addRequest: any) {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
+    };
+  console.log(addRequest)
+  const json = {
+    userId: addRequest.userId,
+    userToAdd: addRequest.userToAdd
+  }
+   return this.http.post(ApiEndpoints.request.createRequest, addRequest, httpOptions);
   }
 
-  declineRequest(userId: string, friendId: string) {
-  return this.http.delete(ApiEndpoints.request.deleteRequest.format(String(userId), String(friendId)))
+  declineRequest(request: RequestModel) {
+  return this.http.delete(ApiEndpoints.request.deleteRequest.format(String(request.userId), String(request.friendId)))
   }
 
   acceptRequest(acceptRequest: RequestModel) {

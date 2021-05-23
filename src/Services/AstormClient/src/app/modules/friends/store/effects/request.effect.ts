@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import {act, Actions, createEffect, ofType} from '@ngrx/effects';
 import { of } from 'rxjs';
 import { catchError, exhaustMap, map, switchMap } from 'rxjs/operators';
 import {LoadFriend, LoadFriendSuccesful} from 'src/app/modules/chat/store/actions/friend.actions';
@@ -9,10 +9,18 @@ import {
   AcceptRequestFail,
   AcceptRequestLoad,
   AcceptRequestSuccesful,
+  AddRequestFail,
+  AddRequest,
+  AddRequestSuccesful,
+  DeclineRequestFail,
+  DeclineRequestLoad,
+  DeclineRequestSuccesful,
   RequestListFail,
   RequestListLoad,
   RequestListSuccesful
 } from '../actions/request.actions';
+import {RequestModel} from '../../../../shared/models/request.model';
+import {addRequestModel} from '../../../../shared/models/addRequest.model';
 
 @Injectable({
   providedIn: 'root'
@@ -43,6 +51,36 @@ export class RequestEffects {
          ]
        }),
         catchError(message => of(AcceptRequestFail ({message})))
+      )
+      )
+    )
+  )
+
+  declineRequest$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(DeclineRequestLoad),
+      switchMap(action =>
+        this.requestService.declineRequest(action.request).pipe(
+          switchMap( () => {
+            return [
+                 RequestListLoad(action.request),
+              DeclineRequestSuccesful({request: action.request})
+            ]
+          }),
+          catchError(message => of(DeclineRequestFail ({message})))
+        )
+      )
+    )
+  )
+
+  addRequest$ = createEffect(
+    () => this.actions$.pipe(
+      ofType(AddRequest),
+      exhaustMap(action =>
+      this.requestService.addRequest(action).pipe(
+        map( () => AddRequestSuccesful()),
+        catchError(message => of(AddRequestFail ({message}))
+        )
       )
       )
     )
