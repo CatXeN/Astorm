@@ -29,15 +29,15 @@ export class PendingFriendsPresenterComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe()
   }
 
-  acceptRequest(request: RequestModel){
+  acceptRequest(request: RequestModel): void{
   this.store.dispatch(AcceptRequestLoad({request}))
   }
 
-  declineRequest(request: RequestModel){
+  declineRequest(request: RequestModel): void{
     this.store.dispatch(DeclineRequestLoad({request}))
   }
 
-  openAddFriendDialog() {
+  openDialog(): void {
     this.dialog.open(AddRequestPresenterComponent)
   }
 }
