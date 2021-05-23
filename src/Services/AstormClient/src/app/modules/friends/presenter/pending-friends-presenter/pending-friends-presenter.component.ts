@@ -37,7 +37,7 @@ export class PendingFriendsPresenterComponent implements OnInit, OnDestroy {
     this.store.dispatch(DeclineRequestLoad({request}))
   }
 
-  openAddFriend() {
+  openAddFriendDialog() {
     this.dialog.open(AddRequestPresenterComponent)
   }
 }

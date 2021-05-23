@@ -7,14 +7,13 @@ import { SharedModule } from 'src/app/shared/shared.module';
 import { FriendsRoutingModule } from './friends-routing.module';
 import { AddRequestPresenterComponent } from './presenter/add-request-presenter/add-request-presenter.component';
 
-
-
 @NgModule({
-  declarations: [FriendsContainerComponent, FriendListPresenterComponent, PendingFriendsPresenterComponent, AddRequestPresenterComponent],
-  imports: [
-    CommonModule,
-    SharedModule,
-    FriendsRoutingModule
-  ]
+  declarations: [
+    FriendsContainerComponent,
+    FriendListPresenterComponent,
+    PendingFriendsPresenterComponent,
+    AddRequestPresenterComponent,
+  ],
+  imports: [CommonModule, SharedModule, FriendsRoutingModule],
 })
-export class FriendsModule { }
+export class FriendsModule {}

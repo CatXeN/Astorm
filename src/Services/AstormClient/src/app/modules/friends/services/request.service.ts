@@ -18,7 +18,6 @@ export class RequestService {
         'Content-Type': 'application/json',
       })
     };
-  console.log(addRequest)
   const json = {
     userId: addRequest.userId,
     userToAdd: addRequest.userToAdd
