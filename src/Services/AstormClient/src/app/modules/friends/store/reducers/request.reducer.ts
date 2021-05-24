@@ -12,7 +12,6 @@ export const initialRequestListState: RequestState = adapter.getInitialState();
 
 export const requestReducer = createReducer(
   initialRequestListState,
-  //REQUEST LIST
   on(request.RequestListLoad, (state) => {
     return { ...state };
   }),
@@ -22,7 +21,6 @@ export const requestReducer = createReducer(
   on(request.RequestListFail, (state) => {
     return { ...state };
   }),
-  //ACCEPT REQUEST
   on(request.AcceptRequestLoad, (state) => {
     return { ...state };
   }),
@@ -32,7 +30,6 @@ export const requestReducer = createReducer(
   on(request.AcceptRequestFail, (state) => {
     return { ...state };
   }),
-  // DECLINE REQUEST
   on(request.DeclineRequestLoad, (state) => {
     return { ...state };
   }),
@@ -42,7 +39,6 @@ export const requestReducer = createReducer(
   on(request.DeclineRequestFail, (state) => {
     return { ...state };
   }),
-  //ADD REQUEST
   on(request.AddRequest, (state) => {
     return {...state}
   }),
