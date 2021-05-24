@@ -86,8 +86,9 @@ namespace AstormPresistance.Repositories.Friend
         public async Task<IEnumerable<PendingRequestInformation>> GetPendingRequestList(Guid userId)
         {
             var result = await _context.PendingRequests
-                .Include(x => x.Friend)
+                .Include(x => x.User)
                 .ThenInclude(x => x.Attributes)
+                .Where(x => x.FriendId == userId)
                 .ToListAsync();
             return _mapper.Map<IEnumerable<PendingRequestInformation>>(result);
         }

@@ -1,0 +1,8 @@
+<form [formGroup]="Request">
+  <mat-form-field appearance="legacy">
+    <mat-label>Friend name</mat-label>
+    <input formControlName="userToAdd" matInput placeholder="Friend name">
+  </mat-form-field>
+  <button mat-raised-button color="primary" (click)="sendRequest()">Send Request</button>
+</form>
+
