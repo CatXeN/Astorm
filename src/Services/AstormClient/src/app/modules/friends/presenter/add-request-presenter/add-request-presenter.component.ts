@@ -13,7 +13,7 @@ import {
 })
 export class AddRequestPresenterComponent implements OnInit {
 
-  addRequest = new FormGroup({
+  Request = new FormGroup({
       userId: new FormControl(localStorage.getItem('id')),
       userToAdd: new FormControl('')
     })
@@ -25,7 +25,7 @@ export class AddRequestPresenterComponent implements OnInit {
   }
 
   sendRequest() {
-    console.log(this.addRequest.value)
-    this.store.dispatch(AddRequest(this.addRequest.value))
+    console.log(this.Request.value)
+    this.store.dispatch(AddRequest(this.Request.value))
   }
 }
