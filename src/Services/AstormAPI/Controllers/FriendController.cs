@@ -41,8 +41,8 @@ namespace AstormAPI.Controllers
 
             var pendingRequestInformation = new PendingRequestInformation()
             {
-                FriendId = friend,
-                UserId = addRequestFriendInfromation.UserId
+                UserId = friend,
+                FriendId = addRequestFriendInfromation.UserId
             };
 
             try

@@ -5,7 +5,6 @@ import { ChatRoutingModule } from './chat-routing.module';
 import { FriendsCardPresenterComponent } from './presenter/friends-card-presenter/friends-card-presenter.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ChatCardPresenterComponent } from './presenter/chat-card-presenter/chat-card-presenter.component';
-import { OperationCardPresenterComponent } from './presenter/operation-card-presenter/operation-card-presenter.component';
 import { PickerModule } from '@ctrl/ngx-emoji-mart';
 
 
@@ -15,7 +14,6 @@ import { PickerModule } from '@ctrl/ngx-emoji-mart';
     FriendsCardPresenterComponent,
     ChatCardPresenterComponent,
     ChatCardPresenterComponent,
-    OperationCardPresenterComponent,
   ],
   imports: [
     CommonModule,

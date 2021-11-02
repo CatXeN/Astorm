@@ -5,8 +5,8 @@
       <p class="header__overall--tittle">Friends</p>
     </div>
     <div class="header__navi">
-      <button mat-button routerLinkActive="activeroute" [routerLink]="['/chat/friends/list']">Friends List</button>
-      <button mat-button routerLinkActive="activeroute" [routerLink]="['/chat/friends/pending']">Pending Friends</button>
+      <button mat-button routerLinkActive="activeroute" [routerLink]="['/friends/list']">Friends List</button>
+      <button mat-button routerLinkActive="activeroute" [routerLink]="['/friends/pending']">Pending Friends</button>
       <button mat-button>Add Friend</button>
     </div>
   </div>
@@ -19,7 +19,7 @@
 
       <div class="friend__options">
         <mat-icon class="friend__options--call">call</mat-icon>
-        <mat-icon class="friend__options--chat">chat</mat-icon>
+        <mat-icon class="friend__options--chat" [routerLink]="['/chat', item.friend.id]">chat</mat-icon>
       </div>
     </div>
   </div>

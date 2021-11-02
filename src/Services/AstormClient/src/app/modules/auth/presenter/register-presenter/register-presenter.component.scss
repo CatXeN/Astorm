@@ -4,9 +4,8 @@
   display: flex;
   flex-direction: row;
 
-  .left-side {
+  .information {
     width: 55%;
-    height: 100%;
     background-color: #273C75;
     display: flex;
     justify-content: center;
@@ -16,7 +15,6 @@
     clip-path: polygon(50% 0%, 90% 0, 100% 20%, 100% 79%, 91% 100%, 32% 100%, 0 100%, 0% 43%, 0 0);
 
     &__header {
-      font-size: 80%;
       font-size: 32px;
     }
 
@@ -52,6 +50,50 @@
       background-color: #273C75;
       color: #fff;
       box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    }
+  }
+}
+
+@media (max-width: 660px) {
+  .container {
+    .information {
+      width: 35%;
+      
+      &__header {
+        font-size: 15px;
+      }
+
+      &__description {
+        font-size: 10px;
+      }
+    }
+
+    .register {
+      width: 65%;
+
+      &__btn {
+        width: 40%;
+      }
+
+      &__login {
+        width: 40%;
+      }
+    }
+  }
+}
+
+@media (min-width: 661px) and (max-width: 1000px) {
+  .container {
+    .register {
+      width: 65%;
+
+      &__btn {
+        width: 40%;
+      }
+
+      &__login {
+        width: 40%;
+      }
     }
   }
 }

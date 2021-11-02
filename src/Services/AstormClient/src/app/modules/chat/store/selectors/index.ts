@@ -8,4 +8,15 @@ export const getFriends = createSelector(
   (entries: Friend[]) => {return entries}
 )
 
+export const getFriend = createSelector(
+  selectAll,
+  (result: any[], props: string) => {
+    let friend: Friend;
+    friend = result.find(x => x.friendId.toString() === props);
+    console.log(friend);
+    console.log(result);
+    return friend;
+  }
+);
+
 

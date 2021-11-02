@@ -5,5 +5,6 @@ export interface Friend {
   userid: string,
   friendId: string,
   userStatus: number,
+  user: User,
   friend: User
 }

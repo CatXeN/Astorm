@@ -4,11 +4,11 @@ import { MainLayoutComponent } from './core/main-layout/main-layout.component';
 
 const routes: Routes = [
   {
-    path: 'chat',
+    path: '',
     component: MainLayoutComponent,
     children: [
       {
-        path: '',
+        path: 'chat',
         loadChildren: () => import('./modules/chat/chat.module').then(x => x.ChatModule)
       },
       {

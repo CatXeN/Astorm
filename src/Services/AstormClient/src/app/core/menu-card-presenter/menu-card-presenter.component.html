@@ -1,0 +1,29 @@
+<mat-drawer-container class="container" autosize>
+  <mat-drawer class="sidenav" mode="side" opened>
+      <mat-nav-list>
+          <div>
+              <div class="spacer"></div>
+              <mat-list-item routerLink="/chat" id="chat-icon" routerLinkActive="router-link-active">
+                  <mat-icon matListIcon>chat</mat-icon>
+              </mat-list-item>
+              <mat-list-item routerLink="/friends/list" routerLinkActive="router-link-active">
+                  <mat-icon matListIcon>people</mat-icon>
+              </mat-list-item>
+              <mat-list-item routerLinkActive="router-link-active">
+                  <mat-icon matListIcon>person</mat-icon>
+              </mat-list-item>
+              <mat-list-item routerLinkActive="router-link-active">
+                  <mat-icon matListIcon>local_post_office</mat-icon>
+              </mat-list-item>
+          </div>
+          <div>
+              <mat-list-item routerLink="/settings" routerLinkActive="router-link-active">
+                  <mat-icon matListIcon>settings</mat-icon>
+              </mat-list-item>
+          </div>
+      </mat-nav-list>
+  </mat-drawer>
+  <div class="sidenav-content">
+      <ng-content></ng-content>
+  </div>
+</mat-drawer-container>
