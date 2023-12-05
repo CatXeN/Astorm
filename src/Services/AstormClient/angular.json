@@ -72,18 +72,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "AstormClient:build"
+            "buildTarget": "AstormClient:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "AstormClient:build:production"
+              "buildTarget": "AstormClient:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "AstormClient:build"
+            "buildTarget": "AstormClient:build"
           }
         },
         "test": {
