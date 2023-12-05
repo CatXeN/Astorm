@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MaterialModule } from './material.module';
-import { TranslateModule } from '@ngx-translate/core';
+import {TranslateModule} from '@ngx-translate/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MenuCardPresenterComponent } from './menu-card-presenter/menu-card-presenter.component';
 import { RouterModule } from '@angular/router';
@@ -20,7 +20,7 @@ import { RouterModule } from '@angular/router';
   ],
   exports: [
     MaterialModule,
-    TranslateModule,
+    TranslateModule.forRoot(),
     FormsModule,
     ReactiveFormsModule,
     MenuCardPresenterComponent
